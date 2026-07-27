@@ -7,6 +7,24 @@
   var $  = function (s) { return document.querySelector(s); };
   var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
 
+  /* ── 読み込み位置 ──────────────────────────
+     リロードすると、ブラウザが前回のスクロール位置へ戻す。
+     そのままだと導入が明けた先がページの途中になってしまうため、
+     先頭から始める。ただし /#company のような直リンクは尊重する。 */
+  (function () {
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    if (location.hash) return;
+
+    function toTop() {
+      // scroll-behavior: smooth を指定しているため、明示的に即時指定する
+      try { window.scrollTo({ top: 0, left: 0, behavior: "instant" }); }
+      catch (e) { window.scrollTo(0, 0); }
+    }
+    toTop();
+    // 復元がこのあとに走る場合に備えて、描画完了後にもう一度
+    window.addEventListener("load", toTop, { once: true });
+  })();
+
   /* ── オープニング ──────────────────────────
      消去自体はCSSアニメーションが担うため、ここでは
      「省略するかどうか」だけを判断する。JSが動かなくても導入は明ける。 */
