@@ -30,23 +30,38 @@
 > 一部が異なります**。作業前に必ずこちらを確認してください。
 > 方針に合わせて作り替えるかどうかは、まだ決まっていません。
 
-| 項目 | 方針の記載 | 現在の実態 |
-| --- | --- | --- |
-| ファイル構成 | 単一HTMLファイル（CSS・JSも中に記述） | `index.html` + `assets/css/style.css` + `assets/js/script.js` の3分割 |
-| 表示確認 | `public/index.html` を開く | `public/` は存在しない。ルートの `index.html` を開く |
-| 公開先 | Firebase Hosting | **GitHub Pages で稼働中**（`main` ブランチのルートを配信） |
-| 公開ディレクトリ | `public` | `firebase.json` は `"public": "."`（ルート） |
+**このリポジトリには、性質の異なる2つのサイトが同居しています。**
+どちらを触っているのか、作業前に必ず確認してください。
 
-- 色・書体は `assets/css/style.css` 冒頭の `:root` に集約済み（方針どおり）
+| | 場所 | 構成 | 配信 |
+| --- | --- | --- | --- |
+| **本番** | ルート `index.html` ＋ `assets/` | 3分割（HTML / CSS / JS） | GitHub Pages（稼働中） |
+| **土台** | `public/index.html` | 単一HTMLファイル | Firebase Hosting（未デプロイ） |
+
+上の「設計方針」に書かれた**単一HTMLファイル構成が当てはまるのは `public/` 側だけ**です。
+本番のルート側は3分割で、方針とは異なります。作り替えるかどうかは未決定です。
+
+| 項目 | 方針の記載 | 実態 |
+| --- | --- | --- |
+| ファイル構成 | 単一HTMLファイル | `public/` は該当。ルートは3分割 |
+| 表示確認 | `public/index.html` を開く | 土台はそのとおり。本番はルートの `index.html` |
+| 公開ディレクトリ | `public` | `firebase.json` は `"public": "public"`（方針どおり） |
+| 公開先 | Firebase Hosting | **本番は GitHub Pages で稼働中**。Firebase は未デプロイ |
+
+- 色・書体は両方とも `:root` に集約済み（方針どおり）
 - レスポンシブ対応済み（方針どおり）
 - React / Vite / npm / ビルド工程は不使用（方針どおり）
-- 外部依存は Google Fonts のみ。導入用の毛筆体は同梱（`assets/fonts/`）
+- 外部依存: 本番は Google Fonts のみ。`public/` は外部依存なし
+  （導入用の毛筆体は `assets/fonts/` に同梱）
 
-### 公開先について
+### ⚠️ deploy 時の注意
 
-現在の本番は **GitHub Pages** です。
-`https://haruhisamiyake-stack.github.io/Hp-mokukou/`
+`firebase.json` の公開ディレクトリは `public` です。
+このまま `firebase deploy` すると、**Firebase には「準備中」の仮ページが公開されます**。
+本番の内容を Firebase で公開する場合は、事前に構成の整理が必要です。
 
-Firebase Hosting の設定ファイルは残してありますが、
-GitHub Actions のワークフローは**手動実行のみ**に設定されています
+GitHub Pages はルートを配信しているため、この設定の影響を受けません。
+本番URL: `https://haruhisamiyake-stack.github.io/Hp-mokukou/`
+
+GitHub Actions の Firebase ワークフローは**手動実行のみ**に設定されています
 （鍵が未登録のため、自動実行すると失敗が記録されるため）。

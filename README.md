@@ -11,35 +11,53 @@
 - スクロールに応じたアニメーション
 - お問い合わせフォーム（フロントエンドのバリデーション付き）
 
-## 更新手順（編集 → プレビュー → 公開）
+## ⚠️ 現在このリポジトリには2つのサイトが入っています
+
+| | 場所 | 内容 | 配信 |
+| --- | --- | --- | --- |
+| **本番** | ルートの `index.html` ＋ `assets/` | 作り込み済みのコーポレートサイト | GitHub Pages（稼働中） |
+| **土台** | `public/index.html` | 「準備中」の仮ページ | Firebase Hosting（未デプロイ） |
+
+`firebase.json` の公開ディレクトリは **`public`** です。
+このまま `firebase deploy` すると、**Firebase には「準備中」の仮ページが公開されます**。
+本番の内容を Firebase で公開したい場合は、先に `public/` へ中身を移すか、
+`firebase.json` の `"public"` を `"."` に戻してください。
+
+GitHub Pages 側はルートを配信しているため、この設定変更の影響を受けません。
+
+## 更新手順（編集 → プレビュー → deploy）
 
 ### 1. 編集
+
+**土台（`public/index.html`）を編集する場合**
+
+単一HTMLファイル構成です。CSS・JS も同じファイル内に記述します。
+色とフォントは冒頭の `:root` にまとめてあります。
+
+**本番サイトを編集する場合**
 
 | 変えたいもの | 開くファイル |
 | --- | --- |
 | 文言・掲載内容 | `index.html` |
-| 色・字送り・レイアウト | `assets/css/style.css` |
+| 色・字送り・レイアウト | `assets/css/style.css`（冒頭の `:root`） |
 | 動き（メニュー・フォーム等） | `assets/js/script.js` |
-
-色と書体は `assets/css/style.css` 冒頭の `:root` にまとめてあります。
-サイト全体の印象を変えるときは、まずここを見てください。
 
 ### 2. プレビュー（公開前に必ず確認）
 
 VS Code の拡張機能 **Live Server** を使います。
 
 1. 拡張機能「Live Server」をインストール
-2. エクスプローラーで `index.html` を右クリック
+2. エクスプローラーで対象の `index.html` を右クリック
 3. **Open with Live Server** を選択
 
 ブラウザが開き、保存するたび自動で再読み込みされます。
-**表示が崩れていないこと**を確認してから次に進んでください。
+**エラーなく表示されること**を確認してから次に進んでください。
 
 > Live Server を使わず、`index.html` をブラウザに直接ドラッグしても表示できます。
 
 ### 3. 公開
 
-`main` ブランチに push すると、GitHub Pages が自動で反映します（1〜2分）。
+**GitHub（履歴の保存・GitHub Pages への反映）**
 
 ```bash
 git add -A
@@ -48,9 +66,16 @@ git pull --rebase origin main
 git push origin HEAD
 ```
 
+`main` に push すると GitHub Pages が自動で反映します（1〜2分）。
 公開URL: https://haruhisamiyake-stack.github.io/Hp-mokukou/
 
-Firebase Hosting へ公開する場合は、後述の「Firebase Hosting へのデプロイ」を参照してください。
+**Firebase Hosting**
+
+```bash
+firebase deploy --only hosting
+```
+
+上の警告のとおり、現在は `public/` の仮ページが公開されます。
 
 ## ページ構成（1ページ完結・アンカーリンク）
 
