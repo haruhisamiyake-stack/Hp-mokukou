@@ -1,16 +1,15 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
     "cleanUrls": true,
-    "trailingSlash": false,
     "headers": [
       {
-        "source": "**/*.@(css|js|svg|jpg|jpeg|png|webp|woff2)",
+        "source": "**/*.@(css|js|svg|jpg|jpeg|png|webp|avif|woff2)",
         "headers": [
           {
             "key": "Cache-Control",
@@ -26,12 +25,6 @@
             "value": "public, max-age=0, must-revalidate"
           }
         ]
-      }
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
       }
     ]
   }

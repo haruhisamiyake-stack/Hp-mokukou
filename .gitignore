@@ -1,14 +1,9 @@
-# OS
-.DS_Store
-Thumbs.db
+# 依存パッケージ
+node_modules/
 
-# Editor
-.vscode/
-.idea/
-*.swp
-
-# Logs
-*.log
+# ビルド成果物
+dist/
+.astro/
 
 # Firebase
 .firebase/
@@ -16,5 +11,21 @@ firebase-debug.log
 firebase-debug.*.log
 .runtimeconfig.json
 
-# Dependencies (if a build step is added later)
-node_modules/
+# 環境変数
+.env
+.env.production
+
+# OS
+.DS_Store
+Thumbs.db
+
+# エディタ
+.vscode/
+.idea/
+*.swp
+
+# ログ
+*.log
+
+# package-lock.json は意図的に除外しない。
+# 別PCや GitHub Actions で同じ依存関係を再現するため、コミット対象に含める。

@@ -1,0 +1,65 @@
+name: Deploy to Firebase Hosting
+
+# 手動実行のみ。push では動かない。
+# GitHub の Actions タブ →「Deploy to Firebase Hosting」→「Run workflow」から実行する。
+on:
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: 'デプロイ先（preview＝確認用の一時URL / live＝本番）'
+        required: true
+        default: preview
+        type: choice
+        options:
+          - preview
+          - live
+
+permissions:
+  contents: read
+  # preview チャンネルのURLを実行結果に残すために必要
+  checks: write
+  pull-requests: write
+
+concurrency:
+  group: deploy-${{ inputs.channel }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: ${{ inputs.channel }} へデプロイ
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ソースを取得
+        uses: actions/checkout@v4
+
+      - name: Node.js を用意
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: 依存パッケージを導入
+        run: npm ci
+
+      - name: Astro をビルド
+        run: npm run build
+
+      - name: ビルド結果を確認
+        run: |
+          if [ ! -f dist/index.html ]; then
+            echo "::error::dist/index.html が生成されていません。ビルドを確認してください。"
+            exit 1
+          fi
+          echo "生成されたファイル:"
+          find dist -type f | sort
+
+      - name: Firebase Hosting へデプロイ
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          projectId: ${{ vars.FIREBASE_PROJECT_ID }}
+          # live のときだけ本番へ。preview は一時URLが発行される。
+          channelId: ${{ inputs.channel == 'live' && 'live' || 'preview' }}
+          expires: 7d

@@ -1,0 +1,53 @@
+---
+// 全ページ共通のレイアウト。
+// head・ヘッダー・フッターの器だけを持ち、中身はまだ作り込まない。
+import '../styles/global.css';
+
+const {
+  title = '株式会社木工舎',
+  description = '',
+  // ページ個別で noindex にしたい場合に true を渡す
+  noindex = false,
+} = Astro.props;
+
+// 正規URLの組み立て（Astro.site 未設定でも動くようにしてある）
+const canonical = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).href
+  : undefined;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    {canonical && <link rel="canonical" href={canonical} />}
+    {noindex && <meta name="robots" content="noindex" />}
+
+    <!-- OGP（値はページから渡す想定。今は最小限） -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:locale" content="ja_JP" />
+
+    <!-- ページ固有の head 要素を差し込む口 -->
+    <slot name="head" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      {/* ヘッダーの器。ナビゲーション等は後で入れる。 */}
+    </header>
+
+    <main class="site-main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      {/* フッターの器。会社情報等は後で入れる。 */}
+    </footer>
+  </body>
+</html>
