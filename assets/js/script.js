@@ -7,6 +7,37 @@
   var $  = function (s) { return document.querySelector(s); };
   var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
 
+  /* ── オープニング ──────────────────────────
+     消去自体はCSSアニメーションが担うため、ここでは
+     「省略するかどうか」だけを判断する。JSが動かなくても導入は明ける。 */
+  (function () {
+    var op = $("#op");
+    if (!op) return;
+
+    var root = document.documentElement;
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var seen;
+    try { seen = sessionStorage.getItem("mokukou.op") === "1"; } catch (e) { seen = false; }
+
+    function skip() {
+      op.classList.add("is-skip");
+      root.classList.add("op-skip");
+      unlock();
+    }
+
+    // 同じ滞在中に何度も見せない。動きを抑える設定なら最初から出さない。
+    if (seen || reduce) { skip(); return; }
+    try { sessionStorage.setItem("mokukou.op", "1"); } catch (e) {}
+
+    // 導入中のスクロールを止める。解除は時間経過でも必ず行う。
+    root.style.overflow = "hidden";
+    function unlock() { root.style.overflow = ""; }
+    setTimeout(unlock, 2700);
+
+    // 見飽きた人向けに、触れば飛ばせるようにする。
+    op.addEventListener("click", skip);
+  })();
+
   /* ── ヘッダーの追従とトップへ戻る ───────────── */
   var hd = $("#hd");
   var totop = $("#totop");

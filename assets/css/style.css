@@ -72,6 +72,103 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .btn--full { width: 100%; }
 
 /* ══════════════════════════════════════════════════════════════════
+   Opening — 筆で「木工舎」と書かれる導入
+   縦組みで上から一字ずつ。漢字の筆順は概ね上から下へ進むため、
+   上端から下端へ墨が乗るマスクで運筆に近い見え方をつくる。
+   消去はCSSアニメーションで完結させ、JS不在でも必ず消えるようにする。
+   ══════════════════════════════════════════════════════════════════ */
+/* 既定は非表示にしておく。アニメーションが走って初めて姿を見せ、
+   自ら消える。こうしておけば、描画が遅れてアニメーションが始まらない
+   場合でも「導入が出ない」だけで済み、画面を塞いだままにはならない。 */
+.op {
+  position: fixed; inset: 0; z-index: 1000;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: clamp(1.4rem, 3vw, 2.4rem);
+  background: var(--sumi);
+  visibility: hidden; opacity: 0;
+  animation: opRun 2.65s var(--ease) forwards;
+}
+@keyframes opRun {
+  0%, 73% { visibility: visible; opacity: 1; }
+  100%    { visibility: hidden; opacity: 0; }
+}
+
+/* 墨のにじみを思わせる淡い光 */
+.op__wash {
+  position: absolute; width: min(70vmin, 520px); aspect-ratio: 1;
+  border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(223,168,94,.16), rgba(223,168,94,.04) 45%, transparent 70%);
+  opacity: 0; transform: scale(.7);
+  animation: opWash 1.9s var(--ease) .2s forwards;
+}
+@keyframes opWash {
+  40% { opacity: 1; transform: scale(1); }
+  100% { opacity: .75; transform: scale(1.06); }
+}
+
+.op__ja { writing-mode: vertical-rl; text-orientation: mixed; line-height: 1.18; }
+
+.op__ch {
+  position: relative; display: inline-block;
+  font-family: var(--min); font-weight: 600;
+  font-size: clamp(2.9rem, 10vw, 5.6rem);
+  letter-spacing: .1em;
+  color: var(--kinu);
+
+  /* 上端から下端へ、ややぼかした境目で墨が乗る */
+  -webkit-mask-image: linear-gradient(to bottom, #000 56%, rgba(0,0,0,.4) 70%, transparent 82%);
+          mask-image: linear-gradient(to bottom, #000 56%, rgba(0,0,0,.4) 70%, transparent 82%);
+  -webkit-mask-size: 100% 300%;  mask-size: 100% 300%;
+  -webkit-mask-position: 0 100%; mask-position: 0 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+
+  filter: blur(5px); opacity: .7;
+  animation: opWrite .5s cubic-bezier(.24,.72,.34,1) forwards,
+             opInk   .5s ease forwards;
+}
+@keyframes opWrite { to { -webkit-mask-position: 0 0; mask-position: 0 0; } }
+@keyframes opInk {
+  60%  { filter: blur(1.2px); }
+  100% { filter: blur(0); opacity: 1; }
+}
+
+/* 穂先の滲み */
+.op__ch::after {
+  content: ""; position: absolute; left: 50%; top: -6%;
+  width: .2em; height: .2em; margin-left: -.1em; border-radius: 50%;
+  background: var(--kinu); filter: blur(7px); opacity: 0;
+  animation: opTip .5s cubic-bezier(.24,.72,.34,1) forwards;
+}
+@keyframes opTip {
+  12%  { opacity: .5; }
+  85%  { opacity: .28; }
+  100% { top: 96%; opacity: 0; }
+}
+
+.op__ch:nth-child(1), .op__ch:nth-child(1)::after { animation-delay: .25s; }
+.op__ch:nth-child(2), .op__ch:nth-child(2)::after { animation-delay: .70s; }
+.op__ch:nth-child(3), .op__ch:nth-child(3)::after { animation-delay: 1.15s; }
+
+.op__en {
+  font-size: .68rem; letter-spacing: .42em; text-indent: .42em;
+  color: var(--kohaku-lt); opacity: 0;
+  animation: opEn .6s var(--ease) 1.45s forwards;
+}
+@keyframes opEn { to { opacity: .9; } }
+
+/* 2回目以降の表示・動きを抑える設定・クリックによる省略 */
+.op.is-skip { display: none; }
+
+/* 導入が明けてから本文が立ち上がる。省略時は待たせない。 */
+.hero__title, .hero__sub { animation: heroIn .9s var(--ease) 2.15s both; }
+.op-skip .hero__title, .op-skip .hero__sub { animation-delay: .15s; }
+@keyframes heroIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .op { display: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
    Header
    ══════════════════════════════════════════════════════════════════ */
 .hd {

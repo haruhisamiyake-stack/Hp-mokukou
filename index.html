@@ -15,10 +15,26 @@
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet" />
+  <!-- フォントの読み込みで描画を止めない。CDNが応答しない環境でも
+       端末内蔵の明朝・ゴシックで先に表示され、届いた時点で差し替わる。 -->
+  <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap"
+        onload="this.onload=null;this.rel='stylesheet'" />
+  <!-- noscript 用の読み込みは意図的に置かない。描画を止める代わりに得られるのは
+       書体の差だけで、届かなければ画面が真っ白のまま止まる。
+       CSS 側で端末内蔵の明朝・ゴシックまでフォールバックを指定してある。 -->
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
+
+<!-- ═══════════ Opening（筆で書かれる演出） ═══════════
+     装飾のため aria-hidden。見出しはヒーローの h1 が担う。
+     消去はCSSアニメーションで行うため、JSが動かなくても必ず消える。 -->
+<div class="op" id="op" aria-hidden="true">
+  <div class="op__wash"></div>
+  <p class="op__ja"><span class="op__ch">木</span><span class="op__ch">工</span><span class="op__ch">舎</span></p>
+  <p class="op__en">MOKUKOU</p>
+</div>
 
 <!-- ═══════════ Header ═══════════ -->
 <header class="hd" id="hd">
