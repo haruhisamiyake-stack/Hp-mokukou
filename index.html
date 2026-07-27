@@ -3,464 +3,382 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>株式会社木工舎 | 新築・リフォームの工務店</title>
-  <meta name="description" content="株式会社木工舎は、新築・リフォーム・リノベーションを手がける地域密着の工務店です。木の温もりと確かな技術で、住む人に寄り添う家づくりをお届けします。" />
-  <meta name="keywords" content="工務店,新築,リフォーム,リノベーション,注文住宅,木工舎" />
+  <title>株式会社木工舎 | 木を知り、暮らしをつくる。</title>
+  <meta name="description" content="株式会社木工舎は、新築からリフォームまで手がける工務店です。一棟一棟、職人の技術で未来へ残る住まいを。" />
 
-  <!-- OGP -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="株式会社木工舎 | 新築・リフォームの工務店" />
-  <meta property="og:description" content="木の温もりと確かな技術で、住む人に寄り添う家づくりをお届けします。" />
+  <meta property="og:title" content="株式会社木工舎 | 木を知り、暮らしをつくる。" />
+  <meta property="og:description" content="新築からリフォームまで。一棟一棟、職人の技術で未来へ残る住まいを。" />
   <meta property="og:site_name" content="株式会社木工舎" />
 
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
 
-  <!-- ===== Header ===== -->
-  <header class="header" id="header">
-    <div class="header__inner">
-      <a href="#hero" class="logo">
-        <span class="logo__mark" aria-hidden="true">木</span>
-        <span class="logo__text">
-          <span class="logo__name">株式会社 木工舎</span>
-          <span class="logo__en">MOKUKOU CO., LTD.</span>
-        </span>
-      </a>
+<!-- ═══════════ Header ═══════════ -->
+<header class="hd" id="hd">
+  <a href="#top" class="hd__logo">
+    <svg class="hd__emblem" viewBox="0 0 48 48" aria-hidden="true">
+      <circle cx="24" cy="24" r="22.5" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <circle cx="24" cy="24" r="15" fill="none" stroke="currentColor" stroke-width=".8" opacity=".75"/>
+      <circle cx="24" cy="24" r="7.5" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/>
+      <g stroke="currentColor" stroke-width=".8" opacity=".7">
+        <path d="M24 1.5V46.5M1.5 24H46.5M8.1 8.1l31.8 31.8M39.9 8.1L8.1 39.9"/>
+      </g>
+    </svg>
+    <span class="hd__name">株式会社 <b>木工舎</b></span>
+  </a>
 
-      <nav class="nav" id="nav">
-        <ul class="nav__list">
-          <li><a href="#about">私たちについて</a></li>
-          <li><a href="#service">事業内容</a></li>
-          <li><a href="#works">施工事例</a></li>
-          <li><a href="#flow">家づくりの流れ</a></li>
-          <li><a href="#voice">お客様の声</a></li>
-          <li><a href="#company">会社概要</a></li>
-        </ul>
-      </nav>
+  <nav class="hd__nav" id="nav" aria-label="メインナビゲーション">
+    <a href="#craft">木工舎の家づくり</a>
+    <a href="#works">施工事例</a>
+    <a href="#flow">家づくりの流れ</a>
+    <a href="#voice">お客様の声</a>
+    <a href="#company">会社案内</a>
+    <a href="#contact" class="hd__nav-contact">お問い合わせ</a>
+  </nav>
 
-      <a href="#contact" class="header__cta">お問い合わせ</a>
+  <a href="#contact" class="hd__contact">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+      <rect x="2" y="5" width="20" height="14" rx="1.5"/><path d="m2.5 6 9.5 7 9.5-7"/>
+    </svg>
+    <span>お問い合わせ</span>
+  </a>
 
-      <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
+  <button class="hd__burger" id="burger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav">
+    <span></span><span></span>
+  </button>
+</header>
 
-  <!-- ===== Hero ===== -->
-  <section class="hero" id="hero">
-    <div class="hero__bg" aria-hidden="true"></div>
-    <div class="hero__inner">
-      <p class="hero__lead">木の温もりを、暮らしの真ん中に。</p>
-      <h1 class="hero__title">
-        住む人の想いから<br />
-        はじまる家づくり
-      </h1>
-      <p class="hero__text">
-        株式会社木工舎は、新築からリフォーム・リノベーションまで。<br />
-        地域に根ざした工務店として、一棟一棟に真心を込めています。
-      </p>
-      <div class="hero__actions">
-        <a href="#contact" class="btn btn--primary">無料相談・お見積り</a>
-        <a href="#works" class="btn btn--ghost">施工事例を見る</a>
-      </div>
-    </div>
-    <a href="#about" class="hero__scroll" aria-label="下へスクロール">
-      <span></span>Scroll
+<!-- ═══════════ Hero ═══════════ -->
+<section class="hero" id="top">
+  <div class="hero__art" aria-hidden="true">
+    <div class="hero__sky"></div>
+    <div class="hero__sun"></div>
+    <div class="hero__scaffold"></div>
+    <div class="hero__frame"></div>
+    <div class="hero__ridge"></div>
+    <div class="hero__timber"></div>
+  </div>
+  <!-- 実写真に差し替える場合はこの要素に background-image を指定してください -->
+  <div class="hero__photo" aria-hidden="true"></div>
+  <!-- 霞は写真より前面に置く。CSS描画・写真のどちらでも見出しの可読性を保つため。 -->
+  <div class="hero__veil" aria-hidden="true"></div>
+
+  <div class="hero__copy">
+    <h1 class="hero__title">木を知り、<br />暮らしをつくる。</h1>
+    <p class="hero__sub">新築からリフォームまで。<br />一棟一棟、職人の技術で<br />未来へ残る住まいを。</p>
+  </div>
+
+  <a href="#intro" class="hero__scroll"><span class="hero__scroll-tx">Scroll</span><span class="hero__scroll-ln"></span></a>
+
+  <div class="hero__news">
+    <a href="#" class="news">
+      <time class="news__date" datetime="2026-07-27">2026.07.27</time>
+      <span class="news__tx">ホームページを公開しました</span>
+      <span class="news__more">View More</span>
     </a>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== About ===== -->
-  <section class="section about" id="about">
-    <div class="container">
-      <div class="section__head">
-        <p class="section__en">About Us</p>
-        <h2 class="section__title">私たちについて</h2>
-      </div>
-      <div class="about__grid">
-        <div class="about__body">
-          <h3 class="about__catch">つくって終わり、ではなく<br />暮らしに寄り添いつづける。</h3>
-          <p>
-            木工舎の家づくりは、お客様のお話を伺うことから始まります。ご家族の暮らし方、
-            大切にしたい時間、これからの人生設計。ひとつひとつに耳を傾け、
-            「本当に必要な住まい」をご提案します。
-          </p>
-          <p>
-            自然素材である木の風合いを活かした設計と、熟練の職人による確かな施工。
-            そして、お引き渡し後も末永くお付き合いいただけるアフターサポート。
-            私たちは、住まいを通じて地域の暮らしを支える工務店でありたいと考えています。
-          </p>
-          <a href="#company" class="link-arrow">会社概要を見る</a>
-        </div>
-        <ul class="about__stats">
-          <li>
-            <span class="about__num">30<small>年</small></span>
-            <span class="about__label">地域での実績</span>
-          </li>
-          <li>
-            <span class="about__num">1200<small>棟+</small></span>
-            <span class="about__label">施工実績</span>
-          </li>
-          <li>
-            <span class="about__num">98<small>%</small></span>
-            <span class="about__label">お客様満足度</span>
-          </li>
-          <li>
-            <span class="about__num">10<small>年</small></span>
-            <span class="about__label">長期保証</span>
-          </li>
-        </ul>
+<!-- ═══════════ Intro ═══════════ -->
+<section class="sec sec--intro" id="intro">
+  <div class="wrap">
+    <div class="lead">
+      <p class="lead__eyebrow">Philosophy</p>
+      <h2 class="lead__title">つくって終わり、ではなく<br />暮らしに寄り添いつづける。</h2>
+      <div class="lead__body">
+        <p>木工舎の家づくりは、お客様のお話を伺うことから始まります。ご家族の暮らし方、大切にしたい時間、これからの人生設計。ひとつひとつに耳を傾け、「本当に必要な住まい」をご提案します。</p>
+        <p>自然素材である木の風合いを活かした設計と、熟練の職人による確かな施工。そして、お引き渡し後も末永くお付き合いいただけるアフターサポート。私たちは、住まいを通じて地域の暮らしを支える工務店でありたいと考えています。</p>
       </div>
     </div>
-  </section>
 
-  <!-- ===== Service ===== -->
-  <section class="section service" id="service">
-    <div class="container">
-      <div class="section__head">
-        <p class="section__en">Our Service</p>
-        <h2 class="section__title">事業内容</h2>
-        <p class="section__desc">新築からリフォームまで、住まいのことなら何でもご相談ください。</p>
+    <dl class="figures">
+      <div class="figures__item"><dt>地域での実績</dt><dd><span class="figures__n">30</span><span class="figures__u">年</span></dd></div>
+      <div class="figures__item"><dt>施工実績</dt><dd><span class="figures__n">1200</span><span class="figures__u">棟</span></dd></div>
+      <div class="figures__item"><dt>お客様満足度</dt><dd><span class="figures__n">98</span><span class="figures__u">%</span></dd></div>
+      <div class="figures__item"><dt>長期保証</dt><dd><span class="figures__n">10</span><span class="figures__u">年</span></dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ═══════════ Craft / 事業内容 ═══════════ -->
+<section class="sec sec--craft" id="craft">
+  <div class="wrap wrap--labelled">
+    <div class="vlabel"><span class="vlabel__ja">木工舎の家づくり</span><span class="vlabel__en">Our Work</span></div>
+
+    <div class="sec__main">
+      <p class="sec__desc">新築からリフォームまで、住まいのことなら何でもご相談ください。</p>
+
+      <ul class="crafts">
+        <li class="craft">
+          <span class="craft__no">01</span>
+          <h3 class="craft__ttl">新築・注文住宅</h3>
+          <p class="craft__tx">土地探しから設計、施工まで。お客様の理想を形にする自由設計の注文住宅を。木の質感を活かした、世界にひとつの住まいをお届けします。</p>
+        </li>
+        <li class="craft">
+          <span class="craft__no">02</span>
+          <h3 class="craft__ttl">リフォーム</h3>
+          <p class="craft__tx">キッチン・浴室などの水回りから、内外装の改修まで。暮らしの「困った」を「快適」に変える、小さな工事から丁寧に対応します。</p>
+        </li>
+        <li class="craft">
+          <span class="craft__no">03</span>
+          <h3 class="craft__ttl">リノベーション</h3>
+          <p class="craft__tx">間取りの変更や性能向上まで含めた、住まいの再生。中古住宅を活かして、新築同様の快適さと資産価値を生み出します。</p>
+        </li>
+        <li class="craft">
+          <span class="craft__no">04</span>
+          <h3 class="craft__ttl">増改築・耐震</h3>
+          <p class="craft__tx">ご家族の変化に合わせた増改築や、大切な住まいを守る耐震補強工事。長く安心して暮らせる家へ、確かな技術でお応えします。</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ Reasons（暗転帯） ═══════════ -->
+<section class="sec sec--reasons" id="reasons">
+  <div class="wrap">
+    <header class="dhead">
+      <p class="dhead__eyebrow">Why Mokukou</p>
+      <h2 class="dhead__title">木工舎が選ばれる理由</h2>
+    </header>
+    <div class="reasons">
+      <div class="reason">
+        <h3 class="reason__ttl">自社大工による確かな施工</h3>
+        <p>経験豊富な自社の職人が、責任を持って施工。下請け任せにしない、品質へのこだわりがあります。</p>
       </div>
-
-      <div class="service__grid">
-        <article class="card">
-          <div class="card__icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22 24 8l18 14"/><path d="M10 20v18h28V20"/><path d="M20 38V28h8v10"/></svg>
-          </div>
-          <h3 class="card__title">新築・注文住宅</h3>
-          <p class="card__text">
-            土地探しから設計、施工まで。お客様の理想を形にする、
-            自由設計の注文住宅をお届けします。木の質感を活かした、
-            世界にひとつの住まいを。
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="card__icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M30 8l10 10-20 20H10V28z"/><path d="M26 12l10 10"/></svg>
-          </div>
-          <h3 class="card__title">リフォーム</h3>
-          <p class="card__text">
-            キッチン・浴室などの水回りから、内外装の改修まで。
-            暮らしの「困った」を「快適」に変える、
-            小さな工事から丁寧に対応します。
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="card__icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="32" height="32" rx="2"/><path d="M8 20h32M20 20v20"/></svg>
-          </div>
-          <h3 class="card__title">リノベーション</h3>
-          <p class="card__text">
-            間取りの変更や性能向上まで含めた、住まいの再生。
-            中古住宅を活かして、新築同様の快適さと
-            資産価値を生み出します。
-          </p>
-        </article>
-
-        <article class="card">
-          <div class="card__icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6v12M24 30v12M6 24h12M30 24h12"/><circle cx="24" cy="24" r="6"/></svg>
-          </div>
-          <h3 class="card__title">増改築・耐震</h3>
-          <p class="card__text">
-            ご家族の変化に合わせた増改築や、大切な住まいを守る
-            耐震補強工事。長く安心して暮らせる家へ、
-            確かな技術でお応えします。
-          </p>
-        </article>
+      <div class="reason">
+        <h3 class="reason__ttl">自然素材へのこだわり</h3>
+        <p>無垢材や漆喰など、体にやさしく、時とともに味わいを増す自然素材を積極的に採用しています。</p>
+      </div>
+      <div class="reason">
+        <h3 class="reason__ttl">明朗な資金計画</h3>
+        <p>ご予算に合わせた最適なプランと、わかりやすいお見積り。資金計画から丁寧にサポートします。</p>
+      </div>
+      <div class="reason">
+        <h3 class="reason__ttl">安心の長期保証・点検</h3>
+        <p>お引き渡し後も定期点検と最長10年の保証で、末永く住まいの健康を見守り続けます。</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== Reasons ===== -->
-  <section class="section reasons" id="reasons">
-    <div class="container">
-      <div class="section__head">
-        <p class="section__en">Why Choose Us</p>
-        <h2 class="section__title">木工舎が選ばれる理由</h2>
+<!-- ═══════════ Works ═══════════ -->
+<section class="sec sec--works" id="works">
+  <div class="wrap wrap--labelled">
+    <div class="vlabel"><span class="vlabel__ja">施工事例</span><span class="vlabel__en">Works</span></div>
+
+    <div class="sec__main">
+      <p class="sec__desc">木工舎が手がけた住まいの一部をご紹介します。</p>
+
+      <div class="filter" role="group" aria-label="施工事例の絞り込み">
+        <button class="filter__b is-on" data-filter="all">すべて</button>
+        <button class="filter__b" data-filter="new">新築</button>
+        <button class="filter__b" data-filter="reform">リフォーム</button>
+        <button class="filter__b" data-filter="reno">リノベーション</button>
       </div>
-      <div class="reasons__grid">
-        <div class="reason">
-          <span class="reason__no">01</span>
-          <h3 class="reason__title">自社大工による確かな施工</h3>
-          <p>経験豊富な自社の職人が、責任を持って施工。下請け任せにしない、品質へのこだわりがあります。</p>
-        </div>
-        <div class="reason">
-          <span class="reason__no">02</span>
-          <h3 class="reason__title">自然素材へのこだわり</h3>
-          <p>無垢材や漆喰など、体にやさしく、時とともに味わいを増す自然素材を積極的に採用しています。</p>
-        </div>
-        <div class="reason">
-          <span class="reason__no">03</span>
-          <h3 class="reason__title">明朗な資金計画</h3>
-          <p>ご予算に合わせた最適なプランと、わかりやすいお見積り。資金計画から丁寧にサポートします。</p>
-        </div>
-        <div class="reason">
-          <span class="reason__no">04</span>
-          <h3 class="reason__title">安心の長期保証・点検</h3>
-          <p>お引き渡し後も定期点検と最長10年の保証で、末永く住まいの健康を見守り続けます。</p>
-        </div>
-      </div>
+
+      <ul class="works">
+        <li class="work" data-cat="new">
+          <div class="work__img work__img--1"><span class="work__cat">新築</span></div>
+          <h3 class="work__ttl">木漏れ日の平屋</h3>
+          <p class="work__meta">新築 ／ 4LDK ／ 自然素材</p>
+        </li>
+        <li class="work" data-cat="reno">
+          <div class="work__img work__img--2"><span class="work__cat">リノベーション</span></div>
+          <h3 class="work__ttl">築40年の再生住宅</h3>
+          <p class="work__meta">リノベーション ／ 戸建て全面改修</p>
+        </li>
+        <li class="work" data-cat="reform">
+          <div class="work__img work__img--3"><span class="work__cat">リフォーム</span></div>
+          <h3 class="work__ttl">明るく変わったキッチン</h3>
+          <p class="work__meta">リフォーム ／ 水回り</p>
+        </li>
+        <li class="work" data-cat="new">
+          <div class="work__img work__img--4"><span class="work__cat">新築</span></div>
+          <h3 class="work__ttl">中庭のある二世帯住宅</h3>
+          <p class="work__meta">新築 ／ 二世帯 ／ 6LDK</p>
+        </li>
+        <li class="work" data-cat="reform">
+          <div class="work__img work__img--5"><span class="work__cat">リフォーム</span></div>
+          <h3 class="work__ttl">くつろぎの和モダン浴室</h3>
+          <p class="work__meta">リフォーム ／ 浴室</p>
+        </li>
+        <li class="work" data-cat="reno">
+          <div class="work__img work__img--6"><span class="work__cat">リノベーション</span></div>
+          <h3 class="work__ttl">土間のある暮らし</h3>
+          <p class="work__meta">リノベーション ／ 部分改修</p>
+        </li>
+      </ul>
+      <p class="works__empty" id="worksEmpty" hidden>該当する事例がありません。</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== Works ===== -->
-  <section class="section works" id="works">
-    <div class="container">
-      <div class="section__head">
-        <p class="section__en">Works</p>
-        <h2 class="section__title">施工事例</h2>
-        <p class="section__desc">木工舎が手がけた住まいの一部をご紹介します。</p>
-      </div>
+<!-- ═══════════ Flow ═══════════ -->
+<section class="sec sec--flow" id="flow">
+  <div class="wrap wrap--labelled">
+    <div class="vlabel"><span class="vlabel__ja">家づくりの流れ</span><span class="vlabel__en">Flow</span></div>
 
-      <div class="works__filter" role="tablist">
-        <button class="chip is-active" data-filter="all">すべて</button>
-        <button class="chip" data-filter="new">新築</button>
-        <button class="chip" data-filter="reform">リフォーム</button>
-        <button class="chip" data-filter="reno">リノベーション</button>
-      </div>
+    <div class="sec__main">
+      <p class="sec__desc">ご相談から完成・お引き渡しまで、安心の6ステップ。</p>
 
-      <div class="works__grid" id="worksGrid">
-        <article class="work" data-cat="new">
-          <div class="work__thumb work__thumb--1" aria-hidden="true"><span class="work__tag">新築</span></div>
-          <div class="work__body">
-            <h3 class="work__title">木漏れ日の平屋</h3>
-            <p class="work__meta">新築 / 4LDK / 自然素材</p>
-          </div>
-        </article>
-        <article class="work" data-cat="reno">
-          <div class="work__thumb work__thumb--2" aria-hidden="true"><span class="work__tag">リノベ</span></div>
-          <div class="work__body">
-            <h3 class="work__title">築40年の再生住宅</h3>
-            <p class="work__meta">リノベーション / 戸建て全面改修</p>
-          </div>
-        </article>
-        <article class="work" data-cat="reform">
-          <div class="work__thumb work__thumb--3" aria-hidden="true"><span class="work__tag">リフォーム</span></div>
-          <div class="work__body">
-            <h3 class="work__title">明るく変わったキッチン</h3>
-            <p class="work__meta">リフォーム / 水回り</p>
-          </div>
-        </article>
-        <article class="work" data-cat="new">
-          <div class="work__thumb work__thumb--4" aria-hidden="true"><span class="work__tag">新築</span></div>
-          <div class="work__body">
-            <h3 class="work__title">中庭のある二世帯住宅</h3>
-            <p class="work__meta">新築 / 二世帯 / 6LDK</p>
-          </div>
-        </article>
-        <article class="work" data-cat="reform">
-          <div class="work__thumb work__thumb--5" aria-hidden="true"><span class="work__tag">リフォーム</span></div>
-          <div class="work__body">
-            <h3 class="work__title">くつろぎの和モダン浴室</h3>
-            <p class="work__meta">リフォーム / 浴室</p>
-          </div>
-        </article>
-        <article class="work" data-cat="reno">
-          <div class="work__thumb work__thumb--6" aria-hidden="true"><span class="work__tag">リノベ</span></div>
-          <div class="work__body">
-            <h3 class="work__title">土間のある暮らし</h3>
-            <p class="work__meta">リノベーション / 部分改修</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Flow ===== -->
-  <section class="section flow" id="flow">
-    <div class="container">
-      <div class="section__head">
-        <p class="section__en">Flow</p>
-        <h2 class="section__title">家づくりの流れ</h2>
-        <p class="section__desc">ご相談から完成・お引き渡しまで、安心の6ステップ。</p>
-      </div>
-      <ol class="flow__list">
-        <li class="flow__item">
-          <span class="flow__step">STEP 01</span>
-          <h3 class="flow__title">ご相談・お問い合わせ</h3>
-          <p>まずはお気軽にご相談ください。ご要望やお悩みをお聞かせいただきます。</p>
-        </li>
-        <li class="flow__item">
-          <span class="flow__step">STEP 02</span>
-          <h3 class="flow__title">現地調査・ヒアリング</h3>
-          <p>現地を拝見し、ご予算やイメージを詳しく伺います。</p>
-        </li>
-        <li class="flow__item">
-          <span class="flow__step">STEP 03</span>
-          <h3 class="flow__title">ご提案・お見積り</h3>
-          <p>プランと明朗なお見積りをご提示。ご納得いくまでご相談ください。</p>
-        </li>
-        <li class="flow__item">
-          <span class="flow__step">STEP 04</span>
-          <h3 class="flow__title">ご契約</h3>
-          <p>内容にご同意いただけましたら、ご契約を締結します。</p>
-        </li>
-        <li class="flow__item">
-          <span class="flow__step">STEP 05</span>
-          <h3 class="flow__title">着工・施工</h3>
-          <p>職人が心を込めて施工。進捗はこまめにご報告します。</p>
-        </li>
-        <li class="flow__item">
-          <span class="flow__step">STEP 06</span>
-          <h3 class="flow__title">完成・お引き渡し</h3>
-          <p>お引き渡し後も、定期点検とアフターサポートで見守ります。</p>
-        </li>
+      <ol class="flow">
+        <li class="flow__i"><span class="flow__n">01</span><h3 class="flow__t">ご相談・お問い合わせ</h3><p>まずはお気軽にご相談ください。ご要望やお悩みをお聞かせいただきます。</p></li>
+        <li class="flow__i"><span class="flow__n">02</span><h3 class="flow__t">現地調査・ヒアリング</h3><p>現地を拝見し、ご予算やイメージを詳しく伺います。</p></li>
+        <li class="flow__i"><span class="flow__n">03</span><h3 class="flow__t">ご提案・お見積り</h3><p>プランと明朗なお見積りをご提示。ご納得いくまでご相談ください。</p></li>
+        <li class="flow__i"><span class="flow__n">04</span><h3 class="flow__t">ご契約</h3><p>内容にご同意いただけましたら、ご契約を締結します。</p></li>
+        <li class="flow__i"><span class="flow__n">05</span><h3 class="flow__t">着工・施工</h3><p>職人が心を込めて施工。進捗はこまめにご報告します。</p></li>
+        <li class="flow__i"><span class="flow__n">06</span><h3 class="flow__t">完成・お引き渡し</h3><p>お引き渡し後も、定期点検とアフターサポートで見守ります。</p></li>
       </ol>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== Voice ===== -->
-  <section class="section voice" id="voice">
-    <div class="container">
-      <div class="section__head">
-        <p class="section__en">Customer's Voice</p>
-        <h2 class="section__title">お客様の声</h2>
-      </div>
-      <div class="voice__grid">
-        <figure class="voice__card">
-          <blockquote>
-            「最後まで親身に相談に乗ってくれました。木の香りに包まれた我が家は、
-            家族みんなのお気に入りの場所です。」
-          </blockquote>
-          <figcaption>新築注文住宅 / T様ご家族</figcaption>
-        </figure>
-        <figure class="voice__card">
-          <blockquote>
-            「古い実家のリノベーションをお願いしました。思い出を残しながら、
-            見違えるほど快適に。頼んで本当によかったです。」
-          </blockquote>
-          <figcaption>リノベーション / K様</figcaption>
-        </figure>
-        <figure class="voice__card">
-          <blockquote>
-            「小さなリフォームでも丁寧に対応してくださいました。
-            職人さんの人柄も良く、安心してお任せできました。」
-          </blockquote>
-          <figcaption>水回りリフォーム / S様</figcaption>
-        </figure>
-      </div>
+<!-- ═══════════ Voice ═══════════ -->
+<section class="sec sec--voice" id="voice">
+  <div class="wrap wrap--labelled">
+    <div class="vlabel"><span class="vlabel__ja">お客様の声</span><span class="vlabel__en">Voice</span></div>
+
+    <div class="sec__main">
+      <ul class="voices">
+        <li class="voice">
+          <blockquote><p>最後まで親身に相談に乗ってくれました。木の香りに包まれた我が家は、家族みんなのお気に入りの場所です。</p></blockquote>
+          <p class="voice__by">新築注文住宅 ／ T様ご家族</p>
+        </li>
+        <li class="voice">
+          <blockquote><p>古い実家のリノベーションをお願いしました。思い出を残しながら、見違えるほど快適に。頼んで本当によかったです。</p></blockquote>
+          <p class="voice__by">リノベーション ／ K様</p>
+        </li>
+        <li class="voice">
+          <blockquote><p>小さなリフォームでも丁寧に対応してくださいました。職人さんの人柄も良く、安心してお任せできました。</p></blockquote>
+          <p class="voice__by">水回りリフォーム ／ S様</p>
+        </li>
+      </ul>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== CTA band ===== -->
-  <section class="cta-band">
-    <div class="container cta-band__inner">
-      <p class="cta-band__text">住まいのこと、まずはお気軽にご相談ください。</p>
-      <a href="#contact" class="btn btn--light">無料相談はこちら</a>
-    </div>
-  </section>
+<!-- ═══════════ CTA ═══════════ -->
+<section class="cta">
+  <div class="wrap cta__in">
+    <p class="cta__tx">住まいのこと、<br class="br-sp" />まずはお気軽にご相談ください。</p>
+    <a href="#contact" class="btn btn--amber">無料相談・お見積り</a>
+  </div>
+</section>
 
-  <!-- ===== Company ===== -->
-  <section class="section company" id="company">
-    <div class="container">
-      <div class="section__head">
-        <p class="section__en">Company</p>
-        <h2 class="section__title">会社概要</h2>
-      </div>
-      <table class="company__table">
+<!-- ═══════════ Company ═══════════ -->
+<section class="sec sec--company" id="company">
+  <div class="wrap wrap--labelled">
+    <div class="vlabel"><span class="vlabel__ja">会社案内</span><span class="vlabel__en">Company</span></div>
+
+    <div class="sec__main">
+      <table class="spec">
         <tbody>
-          <tr><th>会社名</th><td>株式会社木工舎（もっこうしゃ）</td></tr>
-          <tr><th>設立</th><td>1995年4月</td></tr>
-          <tr><th>代表者</th><td>代表取締役 木村 匠</td></tr>
-          <tr><th>資本金</th><td>1,000万円</td></tr>
-          <tr><th>所在地</th><td>〒000-0000 ○○県○○市○○町1-2-3</td></tr>
-          <tr><th>電話番号</th><td>000-000-0000</td></tr>
-          <tr><th>営業時間</th><td>9:00〜18:00（日曜・祝日定休）</td></tr>
-          <tr><th>事業内容</th><td>新築・注文住宅の設計施工／リフォーム・リノベーション／増改築・耐震工事</td></tr>
-          <tr><th>建設業許可</th><td>○○県知事許可（般-00）第00000号</td></tr>
+          <tr><th scope="row">会社名</th><td>株式会社木工舎（もっこうしゃ）</td></tr>
+          <tr><th scope="row">設立</th><td>1995年4月</td></tr>
+          <tr><th scope="row">代表者</th><td>代表取締役　木村 匠</td></tr>
+          <tr><th scope="row">資本金</th><td>1,000万円</td></tr>
+          <tr><th scope="row">所在地</th><td>〒000-0000　○○県○○市○○町1-2-3</td></tr>
+          <tr><th scope="row">電話番号</th><td>000-000-0000</td></tr>
+          <tr><th scope="row">営業時間</th><td>9:00〜18:00（日曜・祝日定休）</td></tr>
+          <tr><th scope="row">事業内容</th><td>新築・注文住宅の設計施工／リフォーム・リノベーション／増改築・耐震工事</td></tr>
+          <tr><th scope="row">建設業許可</th><td>○○県知事許可（般-00）第00000号</td></tr>
         </tbody>
       </table>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ===== Contact ===== -->
-  <section class="section contact" id="contact">
-    <div class="container">
-      <div class="section__head">
-        <p class="section__en">Contact</p>
-        <h2 class="section__title">お問い合わせ</h2>
-        <p class="section__desc">ご相談・お見積りは無料です。お気軽にお問い合わせください。</p>
-      </div>
+<!-- ═══════════ Contact ═══════════ -->
+<section class="sec sec--contact" id="contact">
+  <div class="wrap">
+    <header class="dhead">
+      <p class="dhead__eyebrow">Contact</p>
+      <h2 class="dhead__title">お問い合わせ</h2>
+      <p class="dhead__desc">ご相談・お見積りは無料です。お気軽にお問い合わせください。</p>
+    </header>
 
-      <div class="contact__grid">
-        <div class="contact__info">
-          <div class="contact__tel">
-            <span class="contact__tel-label">お電話でのお問い合わせ</span>
-            <a href="tel:0000000000" class="contact__tel-num">000-000-0000</a>
-            <span class="contact__tel-time">受付時間 9:00〜18:00（日祝除く）</span>
-          </div>
-          <p class="contact__note">
-            現地調査・お見積りは無料で承っております。<br />
-            「こんなことできる？」といったご相談だけでも歓迎です。
-          </p>
+    <div class="contact">
+      <aside class="tel">
+        <p class="tel__lb">お電話でのお問い合わせ</p>
+        <a class="tel__no" href="tel:0000000000">000-000-0000</a>
+        <p class="tel__tm">受付時間　9:00〜18:00（日祝除く）</p>
+        <p class="tel__nt">現地調査・お見積りは無料で承っております。「こんなことできる？」といったご相談だけでも歓迎です。</p>
+      </aside>
+
+      <form class="form" id="form" novalidate>
+        <div class="fld">
+          <label for="f-name">お名前 <span class="need">必須</span></label>
+          <input id="f-name" name="name" type="text" required autocomplete="name" placeholder="山田 太郎" />
         </div>
+        <div class="fld">
+          <label for="f-mail">メールアドレス <span class="need">必須</span></label>
+          <input id="f-mail" name="email" type="email" required autocomplete="email" placeholder="example@mail.com" />
+        </div>
+        <div class="fld">
+          <label for="f-tel">電話番号</label>
+          <input id="f-tel" name="tel" type="tel" autocomplete="tel" placeholder="000-0000-0000" />
+        </div>
+        <div class="fld">
+          <label for="f-type">ご相談内容</label>
+          <select id="f-type" name="type">
+            <option>新築・注文住宅</option>
+            <option>リフォーム</option>
+            <option>リノベーション</option>
+            <option>増改築・耐震</option>
+            <option>その他</option>
+          </select>
+        </div>
+        <div class="fld">
+          <label for="f-msg">お問い合わせ内容 <span class="need">必須</span></label>
+          <textarea id="f-msg" name="message" rows="5" required placeholder="ご要望やご質問をご記入ください。"></textarea>
+        </div>
+        <button type="submit" class="btn btn--amber btn--full">この内容で送信する</button>
+        <p class="form__note" id="formNote" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
 
-        <form class="contact__form" id="contactForm" novalidate>
-          <div class="field">
-            <label for="name">お名前 <span class="req">必須</span></label>
-            <input type="text" id="name" name="name" required placeholder="山田 太郎" />
-          </div>
-          <div class="field">
-            <label for="email">メールアドレス <span class="req">必須</span></label>
-            <input type="email" id="email" name="email" required placeholder="example@mail.com" />
-          </div>
-          <div class="field">
-            <label for="tel">電話番号</label>
-            <input type="tel" id="tel" name="tel" placeholder="000-0000-0000" />
-          </div>
-          <div class="field">
-            <label for="type">ご相談内容</label>
-            <select id="type" name="type">
-              <option value="新築">新築・注文住宅</option>
-              <option value="リフォーム">リフォーム</option>
-              <option value="リノベーション">リノベーション</option>
-              <option value="増改築・耐震">増改築・耐震</option>
-              <option value="その他">その他</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="message">お問い合わせ内容 <span class="req">必須</span></label>
-            <textarea id="message" name="message" rows="5" required placeholder="ご要望やご質問をご記入ください。"></textarea>
-          </div>
-          <button type="submit" class="btn btn--primary btn--full">この内容で送信する</button>
-          <p class="contact__form-note" id="formNote" role="status" aria-live="polite"></p>
-        </form>
+<!-- ═══════════ Footer ═══════════ -->
+<footer class="ft">
+  <div class="wrap ft__in">
+    <div class="ft__brand">
+      <svg class="ft__emblem" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="22.5" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <circle cx="24" cy="24" r="15" fill="none" stroke="currentColor" stroke-width=".8" opacity=".75"/>
+        <circle cx="24" cy="24" r="7.5" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55"/>
+        <g stroke="currentColor" stroke-width=".8" opacity=".7">
+          <path d="M24 1.5V46.5M1.5 24H46.5M8.1 8.1l31.8 31.8M39.9 8.1L8.1 39.9"/>
+        </g>
+      </svg>
+      <div>
+        <p class="ft__name">株式会社 木工舎</p>
+        <p class="ft__addr">〒000-0000　○○県○○市○○町1-2-3<br />TEL 000-000-0000　／　9:00〜18:00（日祝定休）</p>
       </div>
     </div>
-  </section>
+    <nav class="ft__nav" aria-label="フッターナビゲーション">
+      <a href="#craft">木工舎の家づくり</a>
+      <a href="#works">施工事例</a>
+      <a href="#flow">家づくりの流れ</a>
+      <a href="#voice">お客様の声</a>
+      <a href="#company">会社案内</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </div>
+  <p class="ft__copy">&copy; <span id="yr">2026</span> MOKUKOU CO., LTD.</p>
+</footer>
 
-  <!-- ===== Footer ===== -->
-  <footer class="footer">
-    <div class="container footer__inner">
-      <div class="footer__brand">
-        <span class="logo__mark logo__mark--footer" aria-hidden="true">木</span>
-        <div>
-          <p class="footer__name">株式会社 木工舎</p>
-          <p class="footer__addr">〒000-0000 ○○県○○市○○町1-2-3 / TEL 000-000-0000</p>
-        </div>
-      </div>
-      <nav class="footer__nav" aria-label="フッターナビゲーション">
-        <a href="#about">私たちについて</a>
-        <a href="#service">事業内容</a>
-        <a href="#works">施工事例</a>
-        <a href="#flow">家づくりの流れ</a>
-        <a href="#company">会社概要</a>
-        <a href="#contact">お問い合わせ</a>
-      </nav>
-    </div>
-    <p class="footer__copy">&copy; <span id="year">2026</span> MOKUKOU CO., LTD. All Rights Reserved.</p>
-  </footer>
+<a href="#top" class="totop" id="totop" aria-label="ページ上部へ戻る">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</a>
 
-  <a href="#hero" class="to-top" id="toTop" aria-label="ページ上部へ戻る">↑</a>
-
-  <script src="assets/js/script.js" defer></script>
+<script src="assets/js/script.js" defer></script>
 </body>
 </html>

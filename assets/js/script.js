@@ -1,106 +1,115 @@
-/* ========================================================================
+/* ══════════════════════════════════════════════════════════════════
    株式会社木工舎 — Scripts
-   ======================================================================== */
+   ══════════════════════════════════════════════════════════════════ */
 (function () {
   "use strict";
 
-  /* ---- Header shadow on scroll + back-to-top ---- */
-  const header = document.getElementById("header");
-  const toTop = document.getElementById("toTop");
+  var $  = function (s) { return document.querySelector(s); };
+  var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
 
-  const onScroll = () => {
-    const y = window.scrollY;
-    header.classList.toggle("is-scrolled", y > 20);
-    toTop.classList.toggle("is-visible", y > 600);
-  };
+  /* ── ヘッダーの追従とトップへ戻る ───────────── */
+  var hd = $("#hd");
+  var totop = $("#totop");
+
+  function onScroll() {
+    var y = window.pageYOffset;
+    hd.classList.toggle("is-stuck", y > window.innerHeight * 0.7);
+    totop.classList.toggle("is-in", y > window.innerHeight);
+  }
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  /* ---- Mobile menu ---- */
-  const hamburger = document.getElementById("hamburger");
-  const nav = document.getElementById("nav");
+  /* ── モバイルメニュー ────────────────────── */
+  var burger = $("#burger");
+  var nav = $("#nav");
 
-  const closeMenu = () => {
-    nav.classList.remove("is-open");
-    hamburger.classList.remove("is-open");
-    hamburger.setAttribute("aria-expanded", "false");
-  };
-
-  hamburger.addEventListener("click", () => {
-    const open = nav.classList.toggle("is-open");
-    hamburger.classList.toggle("is-open", open);
-    hamburger.setAttribute("aria-expanded", String(open));
+  burger.addEventListener("click", function () {
+    var open = nav.classList.toggle("is-open");
+    burger.classList.toggle("is-on", open);
+    burger.setAttribute("aria-expanded", String(open));
+    burger.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
   });
-  nav.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeMenu));
 
-  /* ---- Works filter ---- */
-  const chips = document.querySelectorAll(".chip");
-  const works = document.querySelectorAll(".work");
+  nav.addEventListener("click", function (e) {
+    if (e.target.closest("a")) {
+      nav.classList.remove("is-open");
+      burger.classList.remove("is-on");
+      burger.setAttribute("aria-expanded", "false");
+      burger.setAttribute("aria-label", "メニューを開く");
+    }
+  });
 
-  chips.forEach((chip) => {
-    chip.addEventListener("click", () => {
-      chips.forEach((c) => c.classList.remove("is-active"));
-      chip.classList.add("is-active");
-      const filter = chip.dataset.filter;
-      works.forEach((w) => {
-        const show = filter === "all" || w.dataset.cat === filter;
-        w.classList.toggle("is-hidden", !show);
+  /* ── 施工事例の絞り込み ─────────────────── */
+  var filters = $$(".filter__b");
+  var works = $$(".work");
+  var empty = $("#worksEmpty");
+
+  filters.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      filters.forEach(function (b) { b.classList.remove("is-on"); });
+      btn.classList.add("is-on");
+
+      var key = btn.dataset.filter;
+      var shown = 0;
+      works.forEach(function (w) {
+        var show = key === "all" || w.dataset.cat === key;
+        w.hidden = !show;
+        if (show) shown++;
       });
+      empty.hidden = shown > 0;
     });
   });
 
-  /* ---- Scroll reveal ---- */
-  const revealTargets = document.querySelectorAll(
-    ".about__grid, .card, .reason, .work, .flow__item, .voice__card, .company__table, .contact__grid"
-  );
-  revealTargets.forEach((el, i) => {
-    el.setAttribute("data-reveal", "");
-    el.style.transitionDelay = (i % 4) * 0.08 + "s";
+  /* ── スクロールに応じた表示 ─────────────── */
+  var targets = $$(".lead, .figures__item, .craft, .reason, .work, .flow__i, .voice, .spec, .tel, .form");
+  targets.forEach(function (el, i) {
+    el.setAttribute("data-rv", "");
+    el.style.transitionDelay = (i % 3) * 0.1 + "s";
   });
 
   if ("IntersectionObserver" in window) {
-    const io = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            obs.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-    revealTargets.forEach((el) => io.observe(el));
+    var io = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          en.target.classList.add("is-in");
+          obs.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+    targets.forEach(function (el) { io.observe(el); });
   } else {
-    revealTargets.forEach((el) => el.classList.add("is-visible"));
+    targets.forEach(function (el) { el.classList.add("is-in"); });
   }
 
-  /* ---- Contact form (front-end validation / demo) ---- */
-  const form = document.getElementById("contactForm");
-  const note = document.getElementById("formNote");
+  /* ── お問い合わせフォーム（フロント側の検証のみ） ──
+     ※ 実際の送信にはメール送信APIとの連携が必要です。            */
+  var form = $("#form");
+  var note = $("#formNote");
 
   if (form) {
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", function (e) {
       e.preventDefault();
-      const name = form.name.value.trim();
-      const email = form.email.value.trim();
-      const message = form.message.value.trim();
-      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-      if (!name || !message || !emailOk) {
-        note.textContent = "必須項目（お名前・メールアドレス・内容）をご確認ください。";
-        note.className = "contact__form-note is-error";
+      // form.name / form.method などは HTMLFormElement 自身のプロパティに
+      // 遮られるため、入力欄は ID で直接取得する。
+      var name = $("#f-name").value.trim();
+      var mail = $("#f-mail").value.trim();
+      var msg  = $("#f-msg").value.trim();
+      var mailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail);
+
+      if (!name || !mailOk || !msg) {
+        note.textContent = "必須項目（お名前・メールアドレス・お問い合わせ内容）をご確認ください。";
+        note.className = "form__note is-ng";
         return;
       }
 
-      // NOTE: This is a front-end demo. Connect to a mail/API backend for production.
       note.textContent = "お問い合わせありがとうございます。担当者より折り返しご連絡いたします。";
-      note.className = "contact__form-note is-success";
+      note.className = "form__note is-ok";
       form.reset();
     });
   }
 
-  /* ---- Current year ---- */
-  const yearEl = document.getElementById("year");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  /* ── 年号 ─────────────────────────────── */
+  var yr = $("#yr");
+  if (yr) yr.textContent = new Date().getFullYear();
 })();
