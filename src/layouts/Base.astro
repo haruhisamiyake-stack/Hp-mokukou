@@ -1,16 +1,15 @@
 ---
 // 全ページ共通のレイアウト。
-// head・ヘッダー・フッターの器だけを持ち、中身はまだ作り込まない。
+// head・オープニング・ヘッダー・フッターを持ち、本文は <slot /> に入る。
 import '../styles/global.css';
 
 const {
-  title = '株式会社木工舎',
-  description = '',
-  // ページ個別で noindex にしたい場合に true を渡す
-  noindex = false,
+  title = '株式会社木工舎 | 岡山市の工務店 － 新築・リフォーム',
+  description = '株式会社木工舎は岡山市北区の工務店です。新築・建替えからリフォーム・増改築、内装、屋根・外装、設備工事、外構まで、住まいのことを一社で承ります。',
+  ogTitle = '株式会社木工舎 | 岡山市の工務店',
+  ogDescription = '木を知り、暮らしをつくる。新築からリフォームまで、住まいのことを一社で承ります。',
 } = Astro.props;
 
-// 正規URLの組み立て（Astro.site 未設定でも動くようにしてある）
 const canonical = Astro.site
   ? new URL(Astro.url.pathname, Astro.site).href
   : undefined;
@@ -19,35 +18,121 @@ const canonical = Astro.site
 <!doctype html>
 <html lang="ja">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>{title}</title>
-    {description && <meta name="description" content={description} />}
+    <meta name="description" content={description} />
     {canonical && <link rel="canonical" href={canonical} />}
-    {noindex && <meta name="robots" content="noindex" />}
 
-    <!-- OGP（値はページから渡す想定。今は最小限） -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    {description && <meta property="og:description" content={description} />}
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:site_name" content="株式会社木工舎" />
     <meta property="og:locale" content="ja_JP" />
 
-    <!-- ページ固有の head 要素を差し込む口 -->
+    <link rel="icon" type="image/svg+xml" href="/img/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    {/*
+      フォントの読み込みで描画を止めない。CDNが応答しない環境でも
+      端末内蔵の明朝・ゴシックで先に表示され、届いた時点で差し替わる。
+      noscript 用の読み込みは意図的に置かない。描画を止める代わりに
+      得られるのは書体の差だけで、届かなければ画面が真っ白のまま止まる。
+    */}
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+
     <slot name="head" />
   </head>
 
   <body>
-    <header class="site-header">
-      {/* ヘッダーの器。ナビゲーション等は後で入れる。 */}
+    {/*
+      オープニング（筆で書かれる演出）。装飾のため aria-hidden。
+      見出しはヒーローの h1 が担う。
+      消去はCSSアニメーションで行うため、JSが動かなくても必ず消える。
+    */}
+    <div class="op" id="op" aria-hidden="true">
+      <div class="op__wash"></div>
+      <p class="op__ja"><span class="op__ch">木</span><span class="op__ch">工</span><span class="op__ch">舎</span></p>
+      <p class="op__en">MOKUKOU</p>
+    </div>
+
+    <header class="hd" id="hd">
+      <a href="/" class="hd__logo">
+        <svg class="hd__emblem" viewBox="0 0 48 48" aria-hidden="true">
+          <circle cx="24" cy="24" r="22.5" fill="none" stroke="currentColor" stroke-width="1.2" />
+          <circle cx="24" cy="24" r="15" fill="none" stroke="currentColor" stroke-width=".8" opacity=".75" />
+          <circle cx="24" cy="24" r="7.5" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55" />
+          <g stroke="currentColor" stroke-width=".8" opacity=".7">
+            <path d="M24 1.5V46.5M1.5 24H46.5M8.1 8.1l31.8 31.8M39.9 8.1L8.1 39.9" />
+          </g>
+        </svg>
+        <span class="hd__name">株式会社 <b>木工舎</b></span>
+      </a>
+
+      <nav class="hd__nav" id="nav" aria-label="メインナビゲーション">
+        <a href="/#craft">木工舎の家づくり</a>
+        <a href="/#works">施工事例</a>
+        <a href="/#flow">家づくりの流れ</a>
+        <a href="/#voice">お客様の声</a>
+        <a href="/#company">会社案内</a>
+        <a href="/#contact" class="hd__nav-contact">お問い合わせ</a>
+      </nav>
+
+      <a href="/#contact" class="hd__contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <rect x="2" y="5" width="20" height="14" rx="1.5" /><path d="m2.5 6 9.5 7 9.5-7" />
+        </svg>
+        <span>お問い合わせ</span>
+      </a>
+
+      <button class="hd__burger" id="burger" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span>
+      </button>
     </header>
 
-    <main class="site-main">
-      <slot />
-    </main>
+    <slot />
 
-    <footer class="site-footer">
-      {/* フッターの器。会社情報等は後で入れる。 */}
+    <footer class="ft">
+      <div class="wrap ft__in">
+        <div class="ft__brand">
+          <svg class="ft__emblem" viewBox="0 0 48 48" aria-hidden="true">
+            <circle cx="24" cy="24" r="22.5" fill="none" stroke="currentColor" stroke-width="1.2" />
+            <circle cx="24" cy="24" r="15" fill="none" stroke="currentColor" stroke-width=".8" opacity=".75" />
+            <circle cx="24" cy="24" r="7.5" fill="none" stroke="currentColor" stroke-width=".8" opacity=".55" />
+            <g stroke="currentColor" stroke-width=".8" opacity=".7">
+              <path d="M24 1.5V46.5M1.5 24H46.5M8.1 8.1l31.8 31.8M39.9 8.1L8.1 39.9" />
+            </g>
+          </svg>
+          <div>
+            <p class="ft__name">株式会社 木工舎</p>
+            <p class="ft__addr">岡山市北区十日市東町6-50</p>
+          </div>
+        </div>
+        <nav class="ft__nav" aria-label="フッターナビゲーション">
+          <a href="/#craft">木工舎の家づくり</a>
+          <a href="/#works">施工事例</a>
+          <a href="/#flow">家づくりの流れ</a>
+          <a href="/#voice">お客様の声</a>
+          <a href="/#company">会社案内</a>
+          <a href="/#contact">お問い合わせ</a>
+        </nav>
+      </div>
+      <p class="ft__copy">&copy; <span id="yr">2026</span> MOKUKOU CO., LTD.</p>
     </footer>
+
+    <a href="#top" class="totop" id="totop" aria-label="ページ上部へ戻る">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path d="M12 19V5M5 12l7-7 7 7" />
+      </svg>
+    </a>
+
+    <script>
+      import '../scripts/site.js';
+    </script>
   </body>
 </html>

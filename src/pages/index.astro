@@ -2,11 +2,278 @@
 import Base from '../layouts/Base.astro';
 ---
 
-<Base
-  title="株式会社木工舎"
-  description="株式会社木工舎のホームページです。"
-  noindex={true}
->
-  <h1>株式会社木工舎</h1>
-  <p>ただいま準備中です。</p>
+<Base>
+  {/* ═══════════ Hero ═══════════ */}
+  <section class="hero" id="top">
+    <div class="hero__art" aria-hidden="true">
+      <div class="hero__sky"></div>
+      <div class="hero__sun"></div>
+      <div class="hero__scaffold"></div>
+      <div class="hero__frame"></div>
+      <div class="hero__ridge"></div>
+      <div class="hero__timber"></div>
+    </div>
+    {/* 実写真に差し替える場合は、この要素に background-image を指定してください */}
+    <div class="hero__photo" aria-hidden="true"></div>
+    {/* 霞は写真より前面に置く。CSS描画・写真のどちらでも見出しの可読性を保つため。 */}
+    <div class="hero__veil" aria-hidden="true"></div>
+
+    <div class="hero__copy">
+      <h1 class="hero__title">木を知り、<br />暮らしをつくる。</h1>
+      <p class="hero__sub">新築からリフォームまで。<br />一棟一棟、職人の技術で<br />未来へ残る住まいを。</p>
+    </div>
+
+    <a href="#intro" class="hero__scroll">
+      <span class="hero__scroll-tx">Scroll</span><span class="hero__scroll-ln"></span>
+    </a>
+
+    <div class="hero__news">
+      <a href="#" class="news">
+        <time class="news__date" datetime="2026-07-27">2026.07.27</time>
+        <span class="news__tx">ホームページを公開しました</span>
+        <span class="news__more">View More</span>
+      </a>
+    </div>
+  </section>
+
+  {/* ═══════════ Intro ═══════════ */}
+  <section class="sec sec--intro" id="intro">
+    <div class="wrap">
+      <div class="lead">
+        <p class="lead__eyebrow">Philosophy</p>
+        <h2 class="lead__title">つくって終わり、ではなく<br />暮らしに寄り添いつづける。</h2>
+        <div class="lead__body">
+          <p>木工舎の家づくりは、お客様のお話を伺うことから始まります。ご家族の暮らし方、大切にしたい時間、これからの人生設計。ひとつひとつに耳を傾け、「本当に必要な住まい」をご提案します。</p>
+          <p>新築や建替えはもちろん、リフォーム、内装、屋根や外装、給排水・空調などの設備、外構まで。住まいにまつわる工事を一社で承れることが、私たちの強みです。窓口がひとつなので、話が早く、責任の所在もはっきりしています。</p>
+          <p>岡山市北区を拠点に、地域の暮らしを支える工務店でありたいと考えています。小さな修繕のご相談も、どうぞお気軽にお声がけください。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════ Craft / 事業内容 ═══════════ */}
+  <section class="sec sec--craft" id="craft">
+    <div class="wrap wrap--labelled">
+      <div class="vlabel"><span class="vlabel__ja">木工舎の家づくり</span><span class="vlabel__en">Our Work</span></div>
+
+      <div class="sec__main">
+        <p class="sec__desc">住まいに関わる工事を、幅広く一社で承ります。</p>
+
+        <ul class="crafts">
+          <li class="craft">
+            <span class="craft__no">01</span>
+            <h3 class="craft__ttl">新築・建替え</h3>
+            <p class="craft__tx">建築工事から住宅の建替えまで。ご家族の暮らし方に合わせた住まいを、設計から施工まで一貫してかたちにします。</p>
+          </li>
+          <li class="craft">
+            <span class="craft__no">02</span>
+            <h3 class="craft__ttl">リフォーム・増改築</h3>
+            <p class="craft__tx">水回りの入れ替えから間取りの変更、増改築まで。暮らしの「使いにくい」を解消し、住み慣れた家を快適に整えます。</p>
+          </li>
+          <li class="craft">
+            <span class="craft__no">03</span>
+            <h3 class="craft__ttl">内装・大工工事</h3>
+            <p class="craft__tx">造作家具や建具、床・壁・天井の仕上げまで。大工の手仕事を活かし、細部まで丁寧に仕上げます。</p>
+          </li>
+          <li class="craft">
+            <span class="craft__no">04</span>
+            <h3 class="craft__ttl">屋根・外装・防水</h3>
+            <p class="craft__tx">屋根工事、板金・塗装、サイディング、防水工事。住まいを雨風から守る外まわりを、まとめてお任せいただけます。</p>
+          </li>
+          <li class="craft">
+            <span class="craft__no">05</span>
+            <h3 class="craft__ttl">設備工事</h3>
+            <p class="craft__tx">給排水・衛生設備、空調設備、電気通信工事、ガス・水道に伴う配管工事まで。住まいの設備を幅広く手がけます。</p>
+          </li>
+          <li class="craft">
+            <span class="craft__no">06</span>
+            <h3 class="craft__ttl">外構・エクステリア</h3>
+            <p class="craft__tx">駐車場やアプローチ、庭まわりの整備、ガーデニング工事まで。建物とあわせて、敷地全体を心地よく整えます。</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════ Reasons（暗転帯） ═══════════ */}
+  <section class="sec sec--reasons" id="reasons">
+    <div class="wrap">
+      <header class="dhead">
+        <p class="dhead__eyebrow">Why Mokukou</p>
+        <h2 class="dhead__title">木工舎にできること</h2>
+      </header>
+      <div class="reasons">
+        <div class="reason">
+          <h3 class="reason__ttl">幅広い工事を一社で</h3>
+          <p>建築・大工・内装・屋根・板金・左官・設備・とび・土木・外構まで。複数の業者に分けて頼む必要がなく、窓口はひとつで済みます。</p>
+        </div>
+        <div class="reason">
+          <h3 class="reason__ttl">住まい全体を見て考える</h3>
+          <p>一部分だけを直しても、原因が別のところにあることは少なくありません。建物全体を見渡したうえで、必要な工事をご提案します。</p>
+        </div>
+        <div class="reason">
+          <h3 class="reason__ttl">わかりやすいお見積り</h3>
+          <p>何にいくらかかるのかを、項目ごとに明示します。ご予算に合わせた優先順位のつけ方も、一緒に考えさせてください。</p>
+        </div>
+        <div class="reason">
+          <h3 class="reason__ttl">岡山の地元業者として</h3>
+          <p>岡山市北区が拠点です。工事のあとも近くにいるからこそ、気になったときにすぐ伺えます。小さな修繕もお気軽に。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════ Works ═══════════ */}
+  <section class="sec sec--works" id="works">
+    <div class="wrap wrap--labelled">
+      <div class="vlabel"><span class="vlabel__ja">施工事例</span><span class="vlabel__en">Works</span></div>
+
+      <div class="sec__main">
+        {/*
+          施工写真をご用意いただき次第、ここに事例を掲載します。
+          掲載を始める際は、README の「施工事例の追加方法」を参照してください。
+        */}
+        <div class="prep">
+          <p class="prep__ttl">施工事例は準備中です</p>
+          <p class="prep__tx">
+            これまでに手がけた住まいを、写真とあわせて順次掲載してまいります。<br />
+            実際の施工内容について知りたい方は、お気軽にお問い合わせください。
+          </p>
+          <a href="#contact" class="btn btn--amber">工事内容について問い合わせる</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════ Flow ═══════════ */}
+  <section class="sec sec--flow" id="flow">
+    <div class="wrap wrap--labelled">
+      <div class="vlabel"><span class="vlabel__ja">家づくりの流れ</span><span class="vlabel__en">Flow</span></div>
+
+      <div class="sec__main">
+        <p class="sec__desc">ご相談から完成・お引き渡しまで、6つのステップで進めます。</p>
+
+        <ol class="flow">
+          <li class="flow__i"><span class="flow__n">01</span><h3 class="flow__t">ご相談・お問い合わせ</h3><p>まずはお気軽にご相談ください。ご要望やお悩みをお聞かせいただきます。</p></li>
+          <li class="flow__i"><span class="flow__n">02</span><h3 class="flow__t">現地調査・ヒアリング</h3><p>現地を拝見し、ご予算やイメージを詳しく伺います。</p></li>
+          <li class="flow__i"><span class="flow__n">03</span><h3 class="flow__t">ご提案・お見積り</h3><p>プランと項目ごとのお見積りをご提示。ご納得いくまでご相談ください。</p></li>
+          <li class="flow__i"><span class="flow__n">04</span><h3 class="flow__t">ご契約</h3><p>内容にご同意いただけましたら、ご契約を締結します。</p></li>
+          <li class="flow__i"><span class="flow__n">05</span><h3 class="flow__t">着工・施工</h3><p>職人が心を込めて施工。進捗はこまめにご報告します。</p></li>
+          <li class="flow__i"><span class="flow__n">06</span><h3 class="flow__t">完成・お引き渡し</h3><p>お引き渡し後も、気になるところがあればすぐに伺います。</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════ Voice ═══════════ */}
+  <section class="sec sec--voice" id="voice">
+    <div class="wrap wrap--labelled">
+      <div class="vlabel"><span class="vlabel__ja">お客様の声</span><span class="vlabel__en">Voice</span></div>
+
+      <div class="sec__main">
+        {/*
+          実際にいただいたご感想のみを掲載してください。
+          掲載にあたっては、お客様ご本人の許可を得たうえで行ってください。
+        */}
+        <div class="prep">
+          <p class="prep__ttl">お客様の声は準備中です</p>
+          <p class="prep__tx">
+            工事をご依頼いただいたお客様から頂戴したご感想を、<br />
+            ご本人の許可をいただいたうえで掲載してまいります。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════ CTA ═══════════ */}
+  <section class="cta">
+    <div class="wrap cta__in">
+      <p class="cta__tx">住まいのこと、<br class="br-sp" />まずはお気軽にご相談ください。</p>
+      <a href="#contact" class="btn btn--light">無料相談・お見積り</a>
+    </div>
+  </section>
+
+  {/* ═══════════ Company ═══════════ */}
+  <section class="sec sec--company" id="company">
+    <div class="wrap wrap--labelled">
+      <div class="vlabel"><span class="vlabel__ja">会社案内</span><span class="vlabel__en">Company</span></div>
+
+      <div class="sec__main">
+        <table class="spec">
+          <tbody>
+            <tr><th scope="row">会社名</th><td>株式会社木工舎（もっこうしゃ）</td></tr>
+            <tr><th scope="row">所在地</th><td>岡山市北区十日市東町6-50</td></tr>
+            <tr><th scope="row">代表者</th><td>代表取締役　岡本 章弘</td></tr>
+            <tr><th scope="row">設立</th><td>2022年（令和4年）8月1日</td></tr>
+            <tr><th scope="row">資本金</th><td>100万円</td></tr>
+            <tr><th scope="row">会社法人等番号</th><td>2600-01-037097</td></tr>
+            <tr>
+              <th scope="row">事業内容</th>
+              <td>
+                建築工事業／住宅の増改築・建替え及び住宅リフォーム工事業／内装工事業／大工工事業／屋根工事業／板金工事業・塗装工事業／左官工事業／エクステリア工事業・ガーデニング工事業／給排水・衛生設備工事業／空調設備工事／電気通信工事業／とび工事業／土木工事業・コンクリート工事業／防水工事業・サイディング工事業／住宅設備及び備品類の販売／不動産の売買、仲介、賃貸及び管理業／太陽光、風力、バイオマス、水素、地熱等を利用した発電事業　ほか
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  {/* ═══════════ Contact ═══════════ */}
+  <section class="sec sec--contact" id="contact">
+    <div class="wrap">
+      <header class="dhead">
+        <p class="dhead__eyebrow">Contact</p>
+        <h2 class="dhead__title">お問い合わせ</h2>
+        <p class="dhead__desc">ご相談・お見積りは無料です。お気軽にお問い合わせください。</p>
+      </header>
+
+      <div class="contact">
+        <aside class="tel">
+          {/*
+            TODO: 電話番号が決まり次第、下記を実際の番号に差し替えてください。
+            差し替え箇所は tel__prep を tel__no に戻し、href="tel:..." を付ける2か所です。
+          */}
+          <p class="tel__lb">お電話でのお問い合わせ</p>
+          <p class="tel__prep">準備中</p>
+          <p class="tel__tm">お急ぎの場合も、下記フォームよりご連絡ください。<br />折り返しご連絡いたします。</p>
+          <p class="tel__nt">現地調査・お見積りは無料で承っております。「こんなことできる？」といったご相談だけでも歓迎です。岡山市および近隣地域に伺います。</p>
+        </aside>
+
+        <form class="form" id="form" novalidate>
+          <div class="fld">
+            <label for="f-name">お名前 <span class="need">必須</span></label>
+            <input id="f-name" name="name" type="text" required autocomplete="name" placeholder="山田 太郎" />
+          </div>
+          <div class="fld">
+            <label for="f-mail">メールアドレス <span class="need">必須</span></label>
+            <input id="f-mail" name="email" type="email" required autocomplete="email" placeholder="example@mail.com" />
+          </div>
+          <div class="fld">
+            <label for="f-tel">電話番号</label>
+            <input id="f-tel" name="tel" type="tel" autocomplete="tel" placeholder="000-0000-0000" />
+          </div>
+          <div class="fld">
+            <label for="f-type">ご相談内容</label>
+            <select id="f-type" name="type">
+              <option>新築・建替え</option>
+              <option>リフォーム・増改築</option>
+              <option>内装・大工工事</option>
+              <option>屋根・外装・防水</option>
+              <option>設備工事</option>
+              <option>外構・エクステリア</option>
+              <option>その他</option>
+            </select>
+          </div>
+          <div class="fld">
+            <label for="f-msg">お問い合わせ内容 <span class="need">必須</span></label>
+            <textarea id="f-msg" name="message" rows="5" required placeholder="ご要望やご質問をご記入ください。"></textarea>
+          </div>
+          <button type="submit" class="btn btn--amber btn--full">この内容で送信する</button>
+          <p class="form__note" id="formNote" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
 </Base>

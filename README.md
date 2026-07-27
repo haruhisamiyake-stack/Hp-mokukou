@@ -12,9 +12,12 @@
 │   ├── pages/
 │   │   └── index.astro        # トップページ（/）
 │   ├── layouts/
-│   │   └── Base.astro         # 全ページ共通レイアウト（head・ヘッダー・フッター）
-│   └── styles/
-│       └── global.css         # 全CSS（:root で色・フォントを一元管理）
+│   │   └── Base.astro         # 全ページ共通レイアウト（head・導入・ヘッダー・フッター）
+│   ├── styles/
+│   │   ├── global.css         # 全CSS（:root で色・フォントを一元管理）
+│   │   └── FONT-LICENSE.md    # 同梱している毛筆体の出典とライセンス
+│   └── scripts/
+│       └── site.js            # メニュー・フォーム等の動き
 ├── public/
 │   └── img/                   # 画像置き場（/img/… で参照）
 ├── astro.config.mjs           # Astro 設定
@@ -41,6 +44,7 @@
 | ページの中身 | `src/pages/*.astro` |
 | ヘッダー・フッター・head | `src/layouts/Base.astro` |
 | 色・フォント・全体のスタイル | `src/styles/global.css`（冒頭の `:root`） |
+| 動き（メニュー・フォーム等） | `src/scripts/site.js` |
 | 画像 | `public/img/` に置き、`/img/ファイル名` で参照 |
 
 色とフォントは `global.css` の `:root` にまとめてあります。
@@ -129,13 +133,25 @@ Firebase コンソール → ⚙️ **プロジェクトの設定** → **サー
 
 ---
 
-## ⚠️ リポジトリに旧サイトが残っています
+## ⚠️ 切り替えの途中です（旧サイトが残っています）
 
-ルート直下の `index.html` と `assets/` は、Astro 導入前に作られた旧サイトです。
-**Astro のビルド対象外**（Astro が見るのは `src/` と `public/` のみ）ですが、
-現在この旧サイトが **GitHub Pages で公開稼働中**です。
+サイトの中身は **Astro（`src/`）へ移植済み**です。今後の編集は `src/` 側で行ってください。
+
+ただし、ルート直下の `index.html` と `assets/` に**移植前の旧サイトが残っています**。
+これは、現在この旧サイトが **GitHub Pages で公開稼働中**のためです。
 
 `https://haruhisamiyake-stack.github.io/Hp-mokukou/`
 
-Astro 側を本番に切り替える際は、旧サイトを削除するか、内容を `src/` へ移すかを
-決める必要があります。判断がついていないため、まだ削除していません。
+Firebase へのデプロイがまだ行われていないため、いま旧サイトを削除すると
+**公開中のURLが表示されなくなります**。そのため残してあります。
+
+### 切り替えの手順
+
+1. 下の「公開の準備」に従って Firebase を設定する
+2. Actions から `preview` でデプロイし、表示を確認する
+3. `live` でデプロイし、本番URLで表示を確認する
+4. **確認できてから**、ルートの `index.html`・`assets/`・`.nojekyll` を削除する
+5. GitHub Pages を停止する（Settings → Pages → Source を None に）
+
+> 手順4まで、同じ内容が2か所に存在します。
+> **編集は `src/` 側だけ**にしてください。ルート側を触ると差異が生まれます。

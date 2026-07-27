@@ -1,101 +1,686 @@
 @charset "UTF-8";
-/* ══════════════════════════════════════════════════════════════
-   全ページ共通のスタイル
-   色・フォントはすべて :root の変数で管理する。
-   個別ページでハードコードせず、必ずここの変数を参照すること。
-   ══════════════════════════════════════════════════════════════ */
+
+/* 導入の社名に使う毛筆体。「木」「工」「舎」の3文字だけを切り出して
+   埋め込んでいる（1.7KB）。通信を伴わないため、回線やCDNの状態に
+   左右されず、書体が遅れて入れ替わるちらつきも起きない。
+   Yuji Syuku / Copyright 2021 The Yuji Project Authors
+   SIL Open Font License 1.1 — https://scripts.sil.org/OFL
+   詳細は src/styles/FONT-LICENSE.md を参照。 */
+@font-face {
+  font-family: "Mokukou Fude";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(data:font/woff2;base64,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) format("woff2");
+  unicode-range: U+6728, U+5DE5, U+820E;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   株式会社木工舎 — Stylesheet
+   夕景のビジュアルと縦組みの明朝体を軸にした、単一テーマの構成。
+   ══════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* ---- 色 ---- */
-  --color-bg: #ffffff;
-  --color-text: #1a1a1a;
-  --color-text-muted: #666666;
-  --color-accent: #8a5a2b;
-  --color-border: #e0e0e0;
+  /* ---- 墨・地色（青灰寄りのニュートラル） ---- */
+  --sumi:      #14120f;
+  --sumi-2:    #211d18;
+  --sumi-soft: #4a443c;
+  --ash:       #8a8781;
+  --kinu:      #f4f2ee;
+  --kinu-2:    #e8e5df;
+  --line:      #d8d4cc;
 
-  /* ---- フォント ---- */
-  --font-sans: "Hiragino Sans", "Yu Gothic", YuGothic,
-               "Noto Sans JP", system-ui, sans-serif;
-  --font-serif: "Hiragino Mincho ProN", "Yu Mincho", YuMincho,
-                "Noto Serif JP", serif;
+  /* ---- 夕陽と空 ---- */
+  --kohaku:    #be7f35;
+  --kohaku-lt: #dfa85e;
+  --kohaku-pl: #f0d3a4;
+  --ai:        #6e8497;
 
-  /* ---- 余白・幅 ---- */
-  --space: 1rem;
-  --content-width: 1100px;
+  --white: #fff;
+
+  /* 日本語を含まないフォントへ落ちると縦組みの字送りが壊れるため、
+     総称ファミリの手前に必ず和文フォントを重ねておく。 */
+  --min: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", YuMincho,
+         "Noto Serif JP", "Noto Serif CJK JP", "IPAMincho", "MS PMincho", serif;
+  /* 毛筆体。導入の社名だけに使う。届かない場合は明朝で組まれる。 */
+  --fude: "Mokukou Fude", "Yuji Syuku", "HGP行書体", var(--min);
+  --got: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", YuGothic,
+         "Noto Sans JP", "Noto Sans CJK JP", "IPAPGothic", "Meiryo", sans-serif;
+
+  --hd-h: 92px;
+  --ease: cubic-bezier(.22, .61, .36, 1);
 }
 
-/* ── リセット ────────────────────────────── */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-html {
-  -webkit-text-size-adjust: 100%;
-}
+html { scroll-behavior: smooth; scroll-padding-top: var(--hd-h); -webkit-text-size-adjust: 100%; }
 
 body {
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  background: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-sans);
+  font-family: var(--got);
+  font-weight: 400;
   font-size: 16px;
-  line-height: 1.8;
+  line-height: 2;
+  color: var(--sumi);
+  background: var(--kinu);
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-img,
-svg,
-video {
-  display: block;
-  max-width: 100%;
-  height: auto;
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+:focus-visible { outline: 2px solid var(--kohaku); outline-offset: 3px; }
+
+.wrap { width: min(1180px, 88%); margin-inline: auto; }
+.br-sp { display: none; }
+
+/* ── 汎用ボタン ───────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 1.15em 3em;
+  font-family: var(--min); font-size: .96rem; font-weight: 500;
+  letter-spacing: .14em;
+  border: 1px solid transparent;
+  transition: background .4s var(--ease), color .4s var(--ease), border-color .4s var(--ease);
+}
+.btn--amber { background: var(--kohaku); color: var(--white); }
+.btn--amber:hover { background: var(--sumi); }
+.btn--full { width: 100%; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Opening — 筆で「木工舎」と書かれる導入
+   縦組みで上から一字ずつ。漢字の筆順は概ね上から下へ進むため、
+   上端から下端へ墨が乗るマスクで運筆に近い見え方をつくる。
+   消去はCSSアニメーションで完結させ、JS不在でも必ず消えるようにする。
+   ══════════════════════════════════════════════════════════════════ */
+/* 既定は非表示にしておく。アニメーションが走って初めて姿を見せ、
+   自ら消える。こうしておけば、描画が遅れてアニメーションが始まらない
+   場合でも「導入が出ない」だけで済み、画面を塞いだままにはならない。 */
+.op {
+  position: fixed; inset: 0; z-index: 1000;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: clamp(1.4rem, 3vw, 2.4rem);
+  background: var(--sumi);
+  visibility: hidden; opacity: 0;
+  /* 全体 3.35s。本編へ移りはじめるのは 78%（＝約2.6秒）で、
+     社名を読み終えてから間を置ける長さにしている。 */
+  animation: opRun 3.35s var(--ease) forwards;
+}
+@keyframes opRun {
+  0%, 78% { visibility: visible; opacity: 1; }
+  100%    { visibility: hidden; opacity: 0; }
 }
 
-a {
-  color: inherit;
+/* 墨のにじみを思わせる淡い光 */
+.op__wash {
+  position: absolute; width: min(70vmin, 520px); aspect-ratio: 1;
+  border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(223,168,94,.16), rgba(223,168,94,.04) 45%, transparent 70%);
+  opacity: 0; transform: scale(.7);
+  animation: opWash 2.6s var(--ease) .2s forwards;
+}
+@keyframes opWash {
+  40% { opacity: 1; transform: scale(1); }
+  100% { opacity: .75; transform: scale(1.08); }
 }
 
-ul,
-ol {
-  list-style: none;
+.op__ja { writing-mode: vertical-rl; text-orientation: mixed; line-height: 1.18; }
+
+.op__ch {
+  position: relative; display: inline-block;
+  font-family: var(--fude); font-weight: 400;
+  font-size: clamp(3.1rem, 10.5vw, 6rem);
+  letter-spacing: .08em;
+  color: var(--kinu);
+
+  /* 上端から下端へ、ぼかした境目で墨が乗っていく */
+  -webkit-mask-image: linear-gradient(to bottom, #000 54%, rgba(0,0,0,.38) 69%, transparent 82%);
+          mask-image: linear-gradient(to bottom, #000 54%, rgba(0,0,0,.38) 69%, transparent 82%);
+  -webkit-mask-size: 100% 300%;  mask-size: 100% 300%;
+  -webkit-mask-position: 0 100%; mask-position: 0 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+
+  filter: blur(6px); opacity: .65;
+  animation: opWrite .62s cubic-bezier(.3,.66,.36,1) forwards,
+             opInk   .62s ease forwards;
+}
+@keyframes opWrite { to { -webkit-mask-position: 0 0; mask-position: 0 0; } }
+@keyframes opInk {
+  55%  { filter: blur(1.6px); }
+  100% { filter: blur(0); opacity: 1; }
 }
 
-:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
+/* 穂先の滲み */
+.op__ch::after {
+  content: ""; position: absolute; left: 50%; top: -6%;
+  width: .22em; height: .22em; margin-left: -.11em; border-radius: 50%;
+  background: var(--kinu); filter: blur(8px); opacity: 0;
+  animation: opTip .62s cubic-bezier(.3,.66,.36,1) forwards;
+}
+@keyframes opTip {
+  12%  { opacity: .52; }
+  85%  { opacity: .28; }
+  100% { top: 96%; opacity: 0; }
 }
 
-/* ── レイアウトの器 ───────────────────────── */
-.site-header,
-.site-footer {
-  width: 100%;
+/* 舎は画数が多いので、ひと呼吸ぶん長く運ぶ */
+.op__ch:nth-child(1), .op__ch:nth-child(1)::after { animation-delay: .40s; }
+.op__ch:nth-child(2), .op__ch:nth-child(2)::after { animation-delay: .95s; }
+.op__ch:nth-child(3), .op__ch:nth-child(3)::after { animation-delay: 1.50s; animation-duration: .72s; }
+
+.op__en {
+  font-size: .68rem; letter-spacing: .42em; text-indent: .42em;
+  color: var(--kohaku-lt); opacity: 0;
+  animation: opEn .55s var(--ease) 2.05s forwards;
+}
+@keyframes opEn { to { opacity: .9; } }
+
+/* 2回目以降の表示・動きを抑える設定・クリックによる省略 */
+.op.is-skip { display: none; }
+
+/* 導入が明けてから本文が立ち上がる。省略時は待たせない。 */
+.hero__title, .hero__sub { animation: heroIn .9s var(--ease) 2.85s both; }
+.op-skip .hero__title, .op-skip .hero__sub { animation-delay: .15s; }
+@keyframes heroIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .op { display: none; }
 }
 
-.site-main {
-  flex: 1;
-  width: min(var(--content-width), 100% - var(--space) * 2);
-  margin-inline: auto;
-  padding-block: calc(var(--space) * 2);
+/* ══════════════════════════════════════════════════════════════════
+   Header
+   ══════════════════════════════════════════════════════════════════ */
+.hd {
+  position: fixed; inset: 0 0 auto 0; z-index: 200;
+  height: var(--hd-h);
+  display: flex; align-items: stretch;
+  padding-left: clamp(1.2rem, 3vw, 2.8rem);
+  color: var(--white);
+  transition: background .5s var(--ease), color .5s var(--ease), height .5s var(--ease);
+}
+.hd.is-stuck {
+  background: rgba(244, 242, 238, .95);
+  backdrop-filter: blur(12px);
+  color: var(--sumi);
+  height: 74px;
+  box-shadow: 0 1px 0 var(--line);
 }
 
-/* ── レスポンシブ ─────────────────────────── */
-@media (max-width: 640px) {
-  body {
-    font-size: 15px;
+.hd__logo { display: flex; align-items: center; gap: .85rem; margin-right: auto; }
+.hd__emblem { width: 38px; height: 38px; flex: none; }
+.hd__name {
+  font-family: var(--min); font-size: 1.16rem; font-weight: 500;
+  letter-spacing: .1em; white-space: nowrap;
+}
+.hd__name b { font-size: 1.5rem; font-weight: 600; letter-spacing: .16em; margin-left: .2em; }
+
+.hd__nav { display: flex; align-items: center; gap: clamp(1.4rem, 2.6vw, 2.9rem); }
+.hd__nav a {
+  font-family: var(--min); font-size: .93rem; letter-spacing: .09em;
+  position: relative; padding-block: .4rem; white-space: nowrap;
+}
+.hd__nav a::after {
+  content: ""; position: absolute; left: 0; bottom: 0;
+  width: 100%; height: 1px; background: currentColor;
+  transform: scaleX(0); transform-origin: right;
+  transition: transform .45s var(--ease);
+}
+.hd__nav a:hover::after { transform: scaleX(1); transform-origin: left; }
+.hd__nav-contact { display: none; }
+
+.hd__contact {
+  display: flex; align-items: center; gap: .7rem;
+  padding-inline: clamp(1.5rem, 3vw, 2.8rem);
+  margin-left: clamp(1.5rem, 3vw, 3rem);
+  background: var(--sumi); color: var(--white);
+  font-family: var(--min); font-size: .93rem; letter-spacing: .1em;
+  transition: background .4s var(--ease);
+}
+.hd__contact:hover { background: var(--kohaku); }
+.hd__contact svg { width: 19px; height: 19px; flex: none; }
+
+.hd__burger { display: none; flex-direction: column; justify-content: center; gap: 7px; width: 48px; }
+.hd__burger span { display: block; width: 26px; height: 1px; background: currentColor; transition: transform .4s var(--ease), opacity .3s; }
+.hd__burger.is-on span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
+.hd__burger.is-on span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
+
+/* ══════════════════════════════════════════════════════════════════
+   Hero — 夕景のビジュアル（実写真に差し替え可）
+   ══════════════════════════════════════════════════════════════════ */
+.hero { position: relative; min-height: 100svh; overflow: hidden; color: var(--white); }
+.hero__art, .hero__photo { position: absolute; inset: 0; }
+
+/* 実写真を使う場合はここに background-image を指定（例）
+   .hero__photo { background-image: url("../img/hero.jpg"); background-size: cover; background-position: center; } */
+.hero__photo { background-size: cover; background-position: 50% 55%; }
+
+.hero__sky {
+  position: absolute; inset: 0;
+  background:
+    /* 薄雲 */
+    radial-gradient(116% 22% at 66% 14%, rgba(255,255,255,.17), transparent 68%),
+    radial-gradient(84% 15% at 22% 27%, rgba(255,242,222,.13), transparent 70%),
+    /* 空 */
+    linear-gradient(to bottom,
+      #3d566e 0%, #5a7288 16%, #85919b 31%,
+      #b6a487 45%, #d9ae74 58%, #efc68b 69%,
+      #d69a55 80%, #8a6034 91%, #3f2c1b 100%);
+}
+.hero__sun {
+  position: absolute; left: 17%; top: 66%; width: 74vw; height: 74vw;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle,
+    rgba(255,253,244,.97) 0%, rgba(255,240,201,.84) 7%,
+    rgba(252,217,152,.54) 17%, rgba(241,188,118,.29) 31%,
+    rgba(214,152,86,.11) 49%, transparent 68%);
+}
+.hero__ridge {
+  position: absolute; inset: auto 0 0 0; height: 27%;
+  background: linear-gradient(to bottom, #3d2b1b 0%, #251a10 55%, #17100a 100%);
+  clip-path: polygon(0 64%, 9% 57%, 16% 61%, 25% 50%, 34% 56%, 43% 51%,
+                     53% 59%, 64% 47%, 74% 55%, 85% 50%, 94% 58%, 100% 53%, 100% 100%, 0 100%);
+  opacity: .9;
+}
+/* 建方中の軸組を思わせる線。写真に差し替える前提の様式化した表現。 */
+.hero__scaffold {
+  position: absolute; right: -3%; bottom: 15%; width: 58%; height: 55%;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(34,23,14,.25) 0 2px, transparent 2px 64px),
+    repeating-linear-gradient(0deg,  rgba(34,23,14,.19) 0 2px, transparent 2px 72px);
+  -webkit-mask-image: linear-gradient(202deg, transparent 0%, #000 36%, #000 76%, transparent 100%);
+          mask-image: linear-gradient(202deg, transparent 0%, #000 36%, #000 76%, transparent 100%);
+}
+.hero__frame {
+  position: absolute; right: 5%; bottom: 22%; width: 38%; height: 39%;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(42,28,16,.42) 0 5px, transparent 5px 116px),
+    repeating-linear-gradient(0deg,  rgba(42,28,16,.32) 0 4px, transparent 4px 98px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 100%);
+          mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 100%);
+}
+.hero__timber {
+  position: absolute; left: 0; bottom: 0; width: 34%; height: 10%;
+  background-image: repeating-linear-gradient(2deg, rgba(190,143,86,.3) 0 6px, rgba(48,32,19,.26) 6px 13px);
+  -webkit-mask-image: linear-gradient(to top, #000 8%, transparent 86%);
+          mask-image: linear-gradient(to top, #000 8%, transparent 86%);
+  opacity: .68;
+}
+/* 見出しの可読性を確保する霞 */
+.hero__veil {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(68% 58% at 27% 45%, rgba(18,13,9,.44), transparent 72%),
+    linear-gradient(to bottom, rgba(18,13,9,.5) 0%, rgba(18,13,9,.08) 21%,
+                    transparent 52%, rgba(18,13,9,.6) 100%);
+}
+
+/* ── 縦組みのコピー ───────────────────────── */
+.hero__copy {
+  position: relative; z-index: 2;
+  min-height: 100svh;
+  display: flex; flex-direction: row-reverse;
+  align-items: center; justify-content: flex-end;
+  gap: clamp(1.6rem, 3.4vw, 3.4rem);
+  padding: calc(var(--hd-h) + 2rem) 8% 9rem clamp(1.5rem, 8vw, 7rem);
+}
+.hero__title, .hero__sub { writing-mode: vertical-rl; text-orientation: mixed; font-family: var(--min); }
+.hero__title {
+  font-size: clamp(2.2rem, 4.6vw, 3.9rem);
+  font-weight: 500; letter-spacing: .19em; line-height: 1.62;
+  text-shadow: 0 2px 30px rgba(20, 14, 8, .5);
+}
+.hero__sub {
+  font-size: clamp(.83rem, 1.16vw, 1.02rem);
+  font-weight: 400; letter-spacing: .17em; line-height: 2.1;
+  border-left: 1px solid rgba(255, 255, 255, .38);
+  padding-left: clamp(1.1rem, 2.4vw, 2.3rem);
+  text-shadow: 0 2px 18px rgba(20, 14, 8, .55);
+  align-self: center;
+}
+
+/* ── SCROLL ───────────────────────────────── */
+.hero__scroll {
+  position: absolute; left: clamp(1.5rem, 4vw, 3.4rem); bottom: 0; z-index: 3;
+  display: flex; flex-direction: column; align-items: center; gap: .9rem;
+}
+.hero__scroll-tx {
+  writing-mode: vertical-rl; font-size: .66rem; letter-spacing: .34em;
+  text-transform: uppercase; opacity: .9;
+}
+.hero__scroll-ln { width: 1px; height: 74px; background: rgba(255,255,255,.45); position: relative; overflow: hidden; }
+.hero__scroll-ln::after {
+  content: ""; position: absolute; inset: 0; background: var(--white);
+  animation: scrollrun 2.4s var(--ease) infinite;
+}
+@keyframes scrollrun {
+  0%   { transform: translateY(-100%); }
+  55%  { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+}
+
+/* ── お知らせ ─────────────────────────────── */
+.hero__news { position: absolute; right: 0; bottom: 2.6rem; z-index: 3; max-width: min(660px, 92%); }
+.news {
+  display: flex; align-items: center; gap: clamp(1rem, 2.4vw, 2.2rem);
+  padding: .95rem clamp(1.2rem, 3vw, 2.4rem);
+  background: rgba(20, 16, 12, .34); backdrop-filter: blur(6px);
+  transition: background .4s var(--ease);
+}
+.news:hover { background: rgba(20, 16, 12, .62); }
+.news__date { font-size: .82rem; letter-spacing: .12em; font-variant-numeric: tabular-nums; opacity: .92; flex: none; }
+.news__tx {
+  font-family: var(--min); font-size: .93rem; letter-spacing: .08em;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.news__more {
+  flex: none; font-size: .64rem; letter-spacing: .26em; text-transform: uppercase;
+  border: 1px solid rgba(255,255,255,.55); border-radius: 999px; padding: .5em 1.5em;
+  transition: background .4s var(--ease), color .4s var(--ease);
+}
+.news:hover .news__more { background: var(--white); color: var(--sumi); }
+
+/* ══════════════════════════════════════════════════════════════════
+   セクション共通
+   ══════════════════════════════════════════════════════════════════ */
+.sec { padding-block: clamp(5rem, 11vw, 9.5rem); }
+.sec--intro   { background: var(--kinu); }
+.sec--craft   { background: var(--white); }
+.sec--reasons { background: var(--sumi); color: var(--kinu); }
+.sec--works   { background: var(--kinu); }
+.sec--flow    { background: var(--white); }
+.sec--voice   { background: var(--kinu); }
+.sec--company { background: var(--white); }
+.sec--contact { background: var(--kinu-2); }
+
+.wrap--labelled { display: grid; grid-template-columns: auto 1fr; gap: clamp(2rem, 5vw, 5.5rem); }
+.sec__main { min-width: 0; }
+.sec__desc {
+  font-family: var(--min); font-size: clamp(1rem, 1.5vw, 1.16rem);
+  letter-spacing: .08em; color: var(--sumi-soft); margin-bottom: clamp(2.4rem, 4vw, 3.6rem);
+}
+
+/* 縦組みのセクション見出し（ヒーローの縦書きと呼応させる） */
+.vlabel { writing-mode: vertical-rl; text-orientation: mixed; display: flex; align-items: flex-start; gap: 1.5rem; padding-top: .2rem; }
+.vlabel__ja { font-family: var(--min); font-size: clamp(1.3rem, 2.1vw, 1.72rem); font-weight: 600; letter-spacing: .24em; }
+.vlabel__en {
+  font-size: .64rem; letter-spacing: .32em; text-transform: uppercase; color: var(--kohaku);
+  display: flex; align-items: center; gap: .9rem;
+}
+.vlabel__en::before { content: ""; width: 1px; height: 46px; background: var(--kohaku); opacity: .55; }
+
+/* 暗転帯・中央寄せ見出し */
+.dhead { text-align: center; margin-bottom: clamp(2.8rem, 5vw, 4.4rem); }
+.dhead__eyebrow { font-size: .64rem; letter-spacing: .34em; text-transform: uppercase; color: var(--kohaku-lt); margin-bottom: 1.1rem; }
+.dhead__title { font-family: var(--min); font-size: clamp(1.55rem, 3.2vw, 2.35rem); font-weight: 600; letter-spacing: .17em; text-wrap: balance; }
+.dhead__desc { margin-top: 1.3rem; font-size: .95rem; color: var(--sumi-soft); letter-spacing: .05em; }
+
+/* スクロール表示 */
+[data-rv] { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+[data-rv].is-in { opacity: 1; transform: none; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Intro
+   ══════════════════════════════════════════════════════════════════ */
+.lead { display: grid; grid-template-columns: 1.08fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+.lead__eyebrow { grid-column: 1 / -1; font-size: .64rem; letter-spacing: .34em; text-transform: uppercase; color: var(--kohaku); margin-bottom: -1rem; }
+.lead__title {
+  font-family: var(--min); font-size: clamp(1.5rem, 2.9vw, 2.3rem); font-weight: 500;
+  letter-spacing: .1em; line-height: 1.85; text-wrap: balance;
+}
+.lead__body { display: grid; gap: 1.5rem; color: var(--sumi-soft); font-size: .95rem; letter-spacing: .04em; }
+
+/* 掲載内容が揃うまでの「準備中」表示 */
+.prep {
+  border: 1px solid var(--line); background: var(--white);
+  padding: clamp(2.6rem, 6vw, 4.5rem) clamp(1.5rem, 4vw, 3rem);
+  text-align: center;
+}
+.prep__ttl {
+  font-family: var(--min); font-size: clamp(1.1rem, 2.2vw, 1.4rem); font-weight: 600;
+  letter-spacing: .14em; margin-bottom: 1.1rem;
+}
+.prep__tx { font-size: .9rem; color: var(--sumi-soft); letter-spacing: .04em; margin-bottom: 2rem; }
+.prep__tx:last-child { margin-bottom: 0; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Craft
+   ══════════════════════════════════════════════════════════════════ */
+.crafts { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.craft { background: var(--white); padding: clamp(2rem, 3.6vw, 3rem); transition: background .5s var(--ease); }
+.craft:hover { background: var(--kinu); }
+.craft__no {
+  font-size: .68rem; letter-spacing: .3em; color: var(--kohaku);
+  font-variant-numeric: tabular-nums; display: block; margin-bottom: 1rem;
+}
+.craft__ttl { font-family: var(--min); font-size: clamp(1.16rem, 1.9vw, 1.4rem); font-weight: 600; letter-spacing: .14em; margin-bottom: 1rem; }
+.craft__tx { font-size: .9rem; color: var(--sumi-soft); letter-spacing: .04em; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Reasons（暗転帯）
+   ══════════════════════════════════════════════════════════════════ */
+.reasons { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(2rem, 4vw, 3.4rem); }
+.reason { border-top: 1px solid rgba(244, 242, 238, .22); padding-top: 1.8rem; }
+.reason__ttl {
+  font-family: var(--min); font-size: clamp(1.1rem, 1.8vw, 1.28rem); font-weight: 600;
+  letter-spacing: .13em; margin-bottom: .9rem; color: var(--kohaku-pl);
+}
+.reason p { font-size: .9rem; color: rgba(244, 242, 238, .74); letter-spacing: .04em; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Works
+   ══════════════════════════════════════════════════════════════════ */
+.filter { display: flex; flex-wrap: wrap; gap: 1.8rem; margin-bottom: clamp(2rem, 3.6vw, 3rem); }
+.filter__b {
+  font-family: var(--min); font-size: .92rem; letter-spacing: .1em;
+  color: var(--ash); padding-bottom: .45rem; border-bottom: 1px solid transparent;
+  transition: color .4s var(--ease), border-color .4s var(--ease);
+}
+.filter__b:hover { color: var(--sumi); }
+.filter__b.is-on { color: var(--sumi); border-bottom-color: var(--kohaku); }
+
+.works { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.6rem, 3vw, 2.6rem); }
+.work { transition: opacity .5s var(--ease); }
+.work[hidden] { display: none; }
+.work__img {
+  position: relative; aspect-ratio: 4 / 3; margin-bottom: 1.2rem; overflow: hidden;
+  display: flex; align-items: flex-start; justify-content: flex-start; padding: 1rem;
+}
+.work__img::after {
+  content: ""; position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(74deg, rgba(255,255,255,.07) 0 2px, transparent 2px 22px);
+}
+.work__img--1 { background: linear-gradient(152deg, #d9a865, #a26f34); }
+.work__img--2 { background: linear-gradient(152deg, #8296a3, #4e5f6d); }
+.work__img--3 { background: linear-gradient(152deg, #e0bc86, #b3813f); }
+.work__img--4 { background: linear-gradient(152deg, #9c7c53, #5c422a); }
+.work__img--5 { background: linear-gradient(152deg, #a3a79b, #64695c); }
+.work__img--6 { background: linear-gradient(152deg, #cf9a5e, #8b5c2c); }
+.work__cat {
+  position: relative; z-index: 1; background: rgba(20, 16, 12, .68); color: var(--white);
+  font-size: .68rem; letter-spacing: .16em; padding: .45em 1.1em;
+}
+.work__ttl { font-family: var(--min); font-size: 1.16rem; font-weight: 600; letter-spacing: .1em; margin-bottom: .35rem; }
+.work__meta { font-size: .8rem; color: var(--ash); letter-spacing: .06em; }
+.works__empty { margin-top: 2rem; color: var(--ash); font-size: .92rem; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Flow — 実際の手順なので連番が情報として意味を持つ
+   ══════════════════════════════════════════════════════════════════ */
+.flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.flow__i { background: var(--white); padding: clamp(1.8rem, 3.2vw, 2.6rem); }
+.flow__n {
+  font-family: var(--min); font-size: 1.9rem; font-weight: 500; color: var(--kohaku);
+  line-height: 1; display: block; margin-bottom: 1rem; font-variant-numeric: tabular-nums;
+}
+.flow__t { font-family: var(--min); font-size: 1.1rem; font-weight: 600; letter-spacing: .12em; margin-bottom: .7rem; }
+.flow__i p { font-size: .87rem; color: var(--sumi-soft); letter-spacing: .04em; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Voice
+   ══════════════════════════════════════════════════════════════════ */
+.voices { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.8rem, 3.4vw, 3rem); }
+.voice { background: var(--white); padding: clamp(2rem, 3.4vw, 2.8rem); border-top: 2px solid var(--kohaku); }
+.voice blockquote { font-family: var(--min); font-size: .99rem; letter-spacing: .06em; line-height: 2.15; margin-bottom: 1.6rem; }
+.voice blockquote p::before { content: "「"; }
+.voice blockquote p::after  { content: "」"; }
+.voice__by { font-size: .8rem; color: var(--ash); letter-spacing: .1em; text-align: right; }
+
+/* ══════════════════════════════════════════════════════════════════
+   CTA
+   ══════════════════════════════════════════════════════════════════ */
+.cta { background: linear-gradient(108deg, #2a1f15 0%, #46331f 46%, #8a5c2c 100%); color: var(--white); }
+.cta__in {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 2rem; flex-wrap: wrap; padding-block: clamp(3.2rem, 6vw, 5rem);
+}
+.cta__tx { font-family: var(--min); font-size: clamp(1.2rem, 2.6vw, 1.85rem); font-weight: 500; letter-spacing: .13em; line-height: 1.8; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Company
+   ══════════════════════════════════════════════════════════════════ */
+.spec { width: 100%; border-collapse: collapse; }
+.spec th, .spec td { text-align: left; padding: 1.35rem 1.2rem; border-bottom: 1px solid var(--line); vertical-align: top; font-size: .93rem; }
+.spec th { width: 12em; font-family: var(--min); font-weight: 600; letter-spacing: .12em; color: var(--sumi); }
+.spec td { color: var(--sumi-soft); letter-spacing: .04em; }
+.spec tr:first-child th, .spec tr:first-child td { border-top: 1px solid var(--line); }
+
+/* ══════════════════════════════════════════════════════════════════
+   Contact
+   ══════════════════════════════════════════════════════════════════ */
+.contact { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(2rem, 4vw, 3.6rem); align-items: start; }
+.tel { background: var(--white); padding: clamp(2rem, 3.4vw, 2.8rem); text-align: center; }
+.tel__lb { font-size: .8rem; letter-spacing: .14em; color: var(--ash); }
+.tel__no {
+  display: block; font-family: var(--min); font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 600;
+  color: var(--kohaku); letter-spacing: .04em; margin: .5rem 0 .3rem; font-variant-numeric: tabular-nums;
+}
+.tel__tm { font-size: .78rem; color: var(--ash); letter-spacing: .08em; }
+/* 電話番号が決まるまでの暫定表示。実番号を入れる際は .tel__no に戻してください。 */
+.tel__prep {
+  font-family: var(--min); font-size: clamp(1.3rem, 3vw, 1.7rem); font-weight: 600;
+  color: var(--ash); letter-spacing: .16em; margin: .6rem 0 .8rem;
+}
+.tel__nt { margin-top: 1.6rem; padding-top: 1.6rem; border-top: 1px solid var(--line); font-size: .86rem; color: var(--sumi-soft); text-align: left; letter-spacing: .03em; }
+
+.form { background: var(--white); padding: clamp(2rem, 3.6vw, 3rem); }
+.fld { margin-bottom: 1.5rem; }
+.fld label { display: block; font-family: var(--min); font-size: .9rem; font-weight: 600; letter-spacing: .1em; margin-bottom: .6rem; }
+.need { background: var(--kohaku); color: var(--white); font-family: var(--got); font-size: .64rem; font-weight: 400; letter-spacing: .1em; padding: .25em .8em; margin-left: .6em; vertical-align: 2px; }
+.fld input, .fld select, .fld textarea {
+  width: 100%; padding: .95rem 1.05rem;
+  font-family: var(--got); font-size: .95rem; color: var(--sumi);
+  background: var(--kinu); border: 1px solid var(--line); border-radius: 0;
+  transition: border-color .3s var(--ease), background .3s var(--ease);
+}
+.fld input::placeholder, .fld textarea::placeholder { color: #b4b0a8; }
+.fld input:focus, .fld select:focus, .fld textarea:focus { outline: none; border-color: var(--kohaku); background: var(--white); }
+.fld textarea { resize: vertical; line-height: 1.9; }
+.form__note { margin-top: 1.1rem; font-size: .88rem; letter-spacing: .04em; text-align: center; min-height: 1.4em; }
+.form__note.is-ok { color: #4a7a4e; }
+.form__note.is-ng { color: #a9432c; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Footer
+   ══════════════════════════════════════════════════════════════════ */
+.ft { background: var(--sumi); color: rgba(244, 242, 238, .82); padding-top: clamp(3.4rem, 6vw, 5rem); }
+.ft__in { display: flex; justify-content: space-between; gap: 2.6rem; flex-wrap: wrap; padding-bottom: 2.6rem; border-bottom: 1px solid rgba(244, 242, 238, .14); }
+.ft__brand { display: flex; gap: 1.1rem; align-items: flex-start; }
+.ft__emblem { width: 42px; height: 42px; flex: none; color: var(--kohaku-lt); }
+.ft__name { font-family: var(--min); font-size: 1.24rem; font-weight: 600; letter-spacing: .16em; color: var(--kinu); margin-bottom: .5rem; }
+.ft__addr { font-size: .8rem; line-height: 1.95; color: rgba(244, 242, 238, .58); letter-spacing: .04em; }
+.ft__nav { display: flex; flex-wrap: wrap; gap: .6rem 1.9rem; align-items: flex-start; }
+.ft__nav a { font-family: var(--min); font-size: .88rem; letter-spacing: .08em; transition: color .3s var(--ease); }
+.ft__nav a:hover { color: var(--kohaku-lt); }
+.ft__copy { text-align: center; font-size: .7rem; letter-spacing: .22em; color: rgba(244, 242, 238, .4); padding-block: 1.8rem; }
+
+/* ── トップへ戻る ─────────────────────────── */
+.totop {
+  position: fixed; right: 1.4rem; bottom: 1.4rem; z-index: 150;
+  width: 50px; height: 50px; display: grid; place-items: center;
+  background: var(--sumi); color: var(--white);
+  opacity: 0; visibility: hidden; transform: translateY(10px);
+  transition: opacity .4s var(--ease), visibility .4s, transform .4s var(--ease), background .4s var(--ease);
+}
+.totop.is-in { opacity: 1; visibility: visible; transform: none; }
+.totop:hover { background: var(--kohaku); }
+.totop svg { width: 19px; height: 19px; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Responsive
+   ══════════════════════════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .works, .flow, .voices { grid-template-columns: repeat(2, 1fr); }
+  .hd__nav { gap: 1.2rem; }
+  .hd__nav a { font-size: .84rem; }
+}
+
+@media (max-width: 900px) {
+  :root { --hd-h: 70px; }
+
+  .hd { padding-right: 0; }
+  .hd.is-stuck { height: 62px; }
+  .hd__name { font-size: 1rem; }
+  .hd__name b { font-size: 1.3rem; }
+
+  .hd__nav {
+    position: fixed; inset: var(--hd-h) 0 auto 0;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: rgba(20, 18, 15, .97); backdrop-filter: blur(14px);
+    color: var(--kinu);
+    max-height: 0; overflow: hidden; transition: max-height .55s var(--ease);
   }
+  .hd__nav.is-open { max-height: 80vh; }
+  .hd__nav a { padding: 1.15rem clamp(1.2rem, 5vw, 2.4rem); border-bottom: 1px solid rgba(244,242,238,.12); font-size: .95rem; }
+  .hd__nav a::after { display: none; }
+  .hd__nav-contact { display: block; color: var(--kohaku-lt); }
+
+  .hd__contact { display: none; }
+  .hd__burger { display: flex; margin-left: auto; margin-right: .5rem; }
+
+  /* 縦組みの見出しに構造線が重ならないよう、画面下部へ退避させる */
+  .hero__scaffold { right: -12%; bottom: 8%; width: 82%; height: 30%; opacity: .6; }
+  .hero__frame { right: -8%; bottom: 13%; width: 58%; height: 24%; opacity: .6; }
+  .hero__timber { width: 30%; height: 8%; }
+
+  .hero__copy { padding-bottom: 9rem; justify-content: center; }
+  .hero__news { right: 50%; transform: translateX(50%); bottom: 5.4rem; width: 92%; }
+  .news__more { display: none; }
+
+  .wrap--labelled { grid-template-columns: 1fr; gap: 2rem; }
+  .vlabel { writing-mode: horizontal-tb; align-items: center; gap: 1.1rem; padding-top: 0; }
+  .vlabel__en::before { width: 34px; height: 1px; }
+
+  .lead { grid-template-columns: 1fr; gap: 1.8rem; }
+  .lead__eyebrow { margin-bottom: 0; }
+  .crafts, .reasons { grid-template-columns: 1fr; }
+  .contact { grid-template-columns: 1fr; }
+  .ft__in { flex-direction: column; }
+}
+
+@media (max-width: 620px) {
+  body { font-size: 15px; }
+  .br-sp { display: inline; }
+
+  .hero__copy { padding-left: 0; padding-right: 0; justify-content: center; gap: 1.2rem; }
+  .hero__title { font-size: clamp(1.9rem, 8.4vw, 2.7rem); letter-spacing: .16em; }
+  .hero__sub { font-size: .76rem; padding-left: 1rem; }
+  /* 全幅のお知らせバーと重なるため、狭い画面では SCROLL を出さない */
+  .hero__scroll { display: none; }
+  .hero__news { bottom: 1.5rem; }
+
+  .works, .flow, .voices { grid-template-columns: 1fr; }
+  .spec th, .spec td { display: block; width: auto; }
+  .spec th { border-bottom: 0; padding-bottom: .3rem; color: var(--kohaku); font-size: .82rem; }
+  .spec td { padding-top: 0; }
+  .spec tr:first-child td { border-top: 0; }
+  .filter { gap: 1.2rem; }
+  .cta__in { flex-direction: column; align-items: flex-start; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
-    transition-duration: 0.001ms !important;
-  }
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  [data-rv] { opacity: 1; transform: none; }
 }

@@ -1,6 +1,6 @@
 # 同梱フォントについて
 
-## mokukou-fude.woff2
+## 導入で使用している毛筆体
 
 オープニングで社名「木工舎」を表示するための毛筆体です。
 
@@ -9,6 +9,7 @@
   （https://github.com/Kinutafontfactory/Yuji）
 - **ライセンス**: SIL Open Font License 1.1 — https://scripts.sil.org/OFL
 - **収録文字**: 「木」「工」「舎」の3文字のみ（1,688バイト）
+- **組み込み方法**: `src/styles/global.css` の `@font-face` に data URI で埋め込み
 
 ### なぜ同梱しているか
 
