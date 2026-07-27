@@ -1,4 +1,20 @@
 @charset "UTF-8";
+
+/* 導入の社名に使う毛筆体。「木」「工」「舎」の3文字だけを切り出して
+   埋め込んでいる（1.7KB）。通信を伴わないため、回線やCDNの状態に
+   左右されず、書体が遅れて入れ替わるちらつきも起きない。
+   Yuji Syuku / Copyright 2021 The Yuji Project Authors
+   SIL Open Font License 1.1 — https://scripts.sil.org/OFL
+   詳細は assets/fonts/README.md を参照。 */
+@font-face {
+  font-family: "Mokukou Fude";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(data:font/woff2;base64,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) format("woff2");
+  unicode-range: U+6728, U+5DE5, U+820E;
+}
+
 /* ══════════════════════════════════════════════════════════════════
    株式会社木工舎 — Stylesheet
    夕景のビジュアルと縦組みの明朝体を軸にした、単一テーマの構成。
@@ -26,6 +42,8 @@
      総称ファミリの手前に必ず和文フォントを重ねておく。 */
   --min: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", YuMincho,
          "Noto Serif JP", "Noto Serif CJK JP", "IPAMincho", "MS PMincho", serif;
+  /* 毛筆体。導入の社名だけに使う。届かない場合は明朝で組まれる。 */
+  --fude: "Mokukou Fude", "Yuji Syuku", "HGP行書体", var(--min);
   --got: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", YuGothic,
          "Noto Sans JP", "Noto Sans CJK JP", "IPAPGothic", "Meiryo", sans-serif;
 
@@ -86,10 +104,12 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   gap: clamp(1.4rem, 3vw, 2.4rem);
   background: var(--sumi);
   visibility: hidden; opacity: 0;
-  animation: opRun 2.65s var(--ease) forwards;
+  /* 全体 3.35s。本編へ移りはじめるのは 78%（＝約2.6秒）で、
+     社名を読み終えてから間を置ける長さにしている。 */
+  animation: opRun 3.35s var(--ease) forwards;
 }
 @keyframes opRun {
-  0%, 73% { visibility: visible; opacity: 1; }
+  0%, 78% { visibility: visible; opacity: 1; }
   100%    { visibility: hidden; opacity: 0; }
 }
 
@@ -99,60 +119,61 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   border-radius: 50%; pointer-events: none;
   background: radial-gradient(circle, rgba(223,168,94,.16), rgba(223,168,94,.04) 45%, transparent 70%);
   opacity: 0; transform: scale(.7);
-  animation: opWash 1.9s var(--ease) .2s forwards;
+  animation: opWash 2.6s var(--ease) .2s forwards;
 }
 @keyframes opWash {
   40% { opacity: 1; transform: scale(1); }
-  100% { opacity: .75; transform: scale(1.06); }
+  100% { opacity: .75; transform: scale(1.08); }
 }
 
 .op__ja { writing-mode: vertical-rl; text-orientation: mixed; line-height: 1.18; }
 
 .op__ch {
   position: relative; display: inline-block;
-  font-family: var(--min); font-weight: 600;
-  font-size: clamp(2.9rem, 10vw, 5.6rem);
-  letter-spacing: .1em;
+  font-family: var(--fude); font-weight: 400;
+  font-size: clamp(3.1rem, 10.5vw, 6rem);
+  letter-spacing: .08em;
   color: var(--kinu);
 
-  /* 上端から下端へ、ややぼかした境目で墨が乗る */
-  -webkit-mask-image: linear-gradient(to bottom, #000 56%, rgba(0,0,0,.4) 70%, transparent 82%);
-          mask-image: linear-gradient(to bottom, #000 56%, rgba(0,0,0,.4) 70%, transparent 82%);
+  /* 上端から下端へ、ぼかした境目で墨が乗っていく */
+  -webkit-mask-image: linear-gradient(to bottom, #000 54%, rgba(0,0,0,.38) 69%, transparent 82%);
+          mask-image: linear-gradient(to bottom, #000 54%, rgba(0,0,0,.38) 69%, transparent 82%);
   -webkit-mask-size: 100% 300%;  mask-size: 100% 300%;
   -webkit-mask-position: 0 100%; mask-position: 0 100%;
   -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
 
-  filter: blur(5px); opacity: .7;
-  animation: opWrite .5s cubic-bezier(.24,.72,.34,1) forwards,
-             opInk   .5s ease forwards;
+  filter: blur(6px); opacity: .65;
+  animation: opWrite .62s cubic-bezier(.3,.66,.36,1) forwards,
+             opInk   .62s ease forwards;
 }
 @keyframes opWrite { to { -webkit-mask-position: 0 0; mask-position: 0 0; } }
 @keyframes opInk {
-  60%  { filter: blur(1.2px); }
+  55%  { filter: blur(1.6px); }
   100% { filter: blur(0); opacity: 1; }
 }
 
 /* 穂先の滲み */
 .op__ch::after {
   content: ""; position: absolute; left: 50%; top: -6%;
-  width: .2em; height: .2em; margin-left: -.1em; border-radius: 50%;
-  background: var(--kinu); filter: blur(7px); opacity: 0;
-  animation: opTip .5s cubic-bezier(.24,.72,.34,1) forwards;
+  width: .22em; height: .22em; margin-left: -.11em; border-radius: 50%;
+  background: var(--kinu); filter: blur(8px); opacity: 0;
+  animation: opTip .62s cubic-bezier(.3,.66,.36,1) forwards;
 }
 @keyframes opTip {
-  12%  { opacity: .5; }
+  12%  { opacity: .52; }
   85%  { opacity: .28; }
   100% { top: 96%; opacity: 0; }
 }
 
-.op__ch:nth-child(1), .op__ch:nth-child(1)::after { animation-delay: .25s; }
-.op__ch:nth-child(2), .op__ch:nth-child(2)::after { animation-delay: .70s; }
-.op__ch:nth-child(3), .op__ch:nth-child(3)::after { animation-delay: 1.15s; }
+/* 舎は画数が多いので、ひと呼吸ぶん長く運ぶ */
+.op__ch:nth-child(1), .op__ch:nth-child(1)::after { animation-delay: .40s; }
+.op__ch:nth-child(2), .op__ch:nth-child(2)::after { animation-delay: .95s; }
+.op__ch:nth-child(3), .op__ch:nth-child(3)::after { animation-delay: 1.50s; animation-duration: .72s; }
 
 .op__en {
   font-size: .68rem; letter-spacing: .42em; text-indent: .42em;
   color: var(--kohaku-lt); opacity: 0;
-  animation: opEn .6s var(--ease) 1.45s forwards;
+  animation: opEn .55s var(--ease) 2.05s forwards;
 }
 @keyframes opEn { to { opacity: .9; } }
 
@@ -160,7 +181,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .op.is-skip { display: none; }
 
 /* 導入が明けてから本文が立ち上がる。省略時は待たせない。 */
-.hero__title, .hero__sub { animation: heroIn .9s var(--ease) 2.15s both; }
+.hero__title, .hero__sub { animation: heroIn .9s var(--ease) 2.85s both; }
 .op-skip .hero__title, .op-skip .hero__sub { animation-delay: .15s; }
 @keyframes heroIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 
