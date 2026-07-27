@@ -61,6 +61,8 @@
 | 1.85s | 「舎」（画数が多いのでひと呼吸長く） |
 | 2.55s | `MOKUKOU` が浮かぶ |
 | **4.00s** | **本編へ移り始める** |
+| 4.20s | 見出しが上から順に現れはじめる（2.1秒かけて下りる） |
+| 5.60s | 添え書きが現れる |
 | 4.76s | 導入が消えきる |
 
 - 同じ滞在中は2回目以降表示されません（`sessionStorage`）
@@ -78,7 +80,8 @@
 | --- | --- |
 | 各文字の書き出し | `.op__ch:nth-child(n)` の `animation-delay` |
 | 本編へ移る時刻 | `.op` の総尺（4.75s）× `@keyframes opRun` の割合（84%） |
-| 本文の立ち上がり | `.hero__title, .hero__sub` の `animation-delay`（4.25s） |
+| 見出しの出る速さ | `.hero__title` の `animation`（2.1s）と `animation-delay`（4.2s） |
+| 添え書きの出る速さ | `.hero__sub` の `animation`（1.4s）と `animation-delay`（5.6s） |
 | スクロール解除 | `src/scripts/site.js` の `setTimeout(unlock, 4800)` |
 
 > **設計上の注意**

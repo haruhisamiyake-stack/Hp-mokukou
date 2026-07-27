@@ -180,10 +180,26 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* 2回目以降の表示・動きを抑える設定・クリックによる省略 */
 .op.is-skip { display: none; }
 
-/* 導入が明けてから本文が立ち上がる。省略時は待たせない。 */
-.hero__title, .hero__sub { animation: heroIn .9s var(--ease) 4.25s both; }
-.op-skip .hero__title, .op-skip .hero__sub { animation-delay: .15s; }
-@keyframes heroIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+/* 導入が明けてから本文が立ち上がる。省略時は待たせない。
+   見出しは、導入の運筆と同じく上から下へ墨が下りるように現れる。
+   縦組みなので、physical な上下方向がそのまま字の進む向きになる。 */
+.hero__title {
+  -webkit-mask-image: linear-gradient(to bottom, #000 44%, rgba(0,0,0,.4) 63%, transparent 80%);
+          mask-image: linear-gradient(to bottom, #000 44%, rgba(0,0,0,.4) 63%, transparent 80%);
+  -webkit-mask-size: 100% 320%;   mask-size: 100% 320%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  animation: heroWrite 2.1s cubic-bezier(.3,.6,.32,1) 4.2s both;
+}
+@keyframes heroWrite {
+  from { -webkit-mask-position: 0 100%; mask-position: 0 100%; opacity: .55; }
+  to   { -webkit-mask-position: 0 0;    mask-position: 0 0;    opacity: 1; }
+}
+
+.hero__sub { animation: heroIn 1.4s var(--ease) 5.6s both; }
+@keyframes heroIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+.op-skip .hero__title { animation-delay: .15s; }
+.op-skip .hero__sub   { animation-delay: 1.3s; }
 
 @media (prefers-reduced-motion: reduce) {
   .op { display: none; }
