@@ -63,9 +63,9 @@
 | **4.00s** | **本編へ移り始める** |
 | 4.20s | 見出しが上から順に現れはじめる |
 | 4.76s | 導入が消えきる |
-| 5.60s | 添え書きが現れる |
-| 6.30s | 見出しが下りきる |
-| 7.00s | 添え書きが出そろう |
+| 6.50s | 添え書きが現れる |
+| 7.80s | 見出しが下りきる |
+| 8.10s | 添え書きが出そろう |
 
 - 同じ滞在中は2回目以降表示されません（`sessionStorage`）
 - 画面をタップ／クリックすると飛ばせます
@@ -82,8 +82,8 @@
 | --- | --- |
 | 各文字の書き出し | `.op__ch:nth-child(n)` の `animation-delay` |
 | 本編へ移る時刻 | `.op` の総尺（4.75s）× `@keyframes opRun` の割合（84%） |
-| 見出しの出る速さ | `.hero__title` の `animation`（2.1s）と `animation-delay`（4.2s） |
-| 添え書きの出る速さ | `.hero__sub` の `animation`（1.4s）と `animation-delay`（5.6s） |
+| 見出しの出る速さ | `.hero__title` の `animation`（3.6s）と `animation-delay`（4.2s） |
+| 添え書きの出る速さ | `.hero__sub` の `animation`（1.6s）と `animation-delay`（6.5s） |
 | スクロール解除 | `src/scripts/site.js` の `setTimeout(unlock, 4800)` |
 
 > **設計上の注意**
