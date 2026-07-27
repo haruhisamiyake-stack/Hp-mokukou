@@ -47,7 +47,27 @@ python3 -m http.server 8000
 # → http://localhost:8000 を開く
 ```
 
-## Firebase Hosting へのデプロイ
+## 公開（GitHub Pages）
+
+現在の公開先は **GitHub Pages** です。`main` ブランチの内容がそのまま公開されます。
+
+公開URL: `https://haruhisamiyake-stack.github.io/Hp-mokukou/`
+
+### 初回のみ必要な設定
+
+リポジトリの **Settings → Pages** で、**Source** を「Deploy from a branch」、
+**Branch** を `main` / `/(root)` に設定して **Save**。（スマートフォンからでも操作できます）
+
+以後は `main` に push するたびに、自動で公開内容が更新されます。
+
+> `.nojekyll` を置いてあるため、GitHub Pages 側の Jekyll 処理は行われず、
+> ファイルがそのまま配信されます。
+
+## Firebase Hosting へのデプロイ（任意）
+
+> 現在は GitHub Pages で公開しているため、このワークフローは**手動実行のみ**の設定です。
+> 静的サイトのうちは Pages と見た目・速度は変わりません。
+> フォームの実送信や問い合わせ管理など、サーバー側の処理が必要になった段階で移行してください。
 
 このリポジトリは Firebase Hosting 用の設定と、GitHub Actions による自動デプロイを同梱しています。
 PCがなくても、スマートフォンのブラウザだけで設定を完了できます。

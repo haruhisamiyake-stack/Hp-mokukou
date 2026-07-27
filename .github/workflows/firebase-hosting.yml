@@ -1,12 +1,17 @@
 name: Deploy to Firebase Hosting
 
-# 本番反映: main への push
-# 手動実行: GitHub の Actions タブから "Run workflow"（スマホからでも実行できます）
+# 現在の公開先は GitHub Pages のため、このワークフローは手動実行のみとする。
+# Firebase へ移行する際は、下の workflow_dispatch に push トリガーを足してください。
+#   on:
+#     push:
+#       branches: [main]
+#     workflow_dispatch:
+#
+# 実行前に、リポジトリの Settings → Secrets and variables → Actions で
+#   Secret   FIREBASE_SERVICE_ACCOUNT … サービスアカウントJSONの全文
+#   Variable FIREBASE_PROJECT_ID      … FirebaseのプロジェクトID
+# を登録しておく必要があります（未登録のまま実行すると失敗します）。
 on:
-  push:
-    branches:
-      - main
-      - claude/koyano-koumuten-homepage-1yhv7q
   workflow_dispatch:
 
 permissions:
