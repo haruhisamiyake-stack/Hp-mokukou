@@ -313,16 +313,18 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .lead__body { display: grid; gap: 1.5rem; color: var(--sumi-soft); font-size: .95rem; letter-spacing: .04em; }
 
-.figures {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  margin-top: clamp(3.2rem, 6vw, 5.5rem); border-top: 1px solid var(--line);
+/* 掲載内容が揃うまでの「準備中」表示 */
+.prep {
+  border: 1px solid var(--line); background: var(--white);
+  padding: clamp(2.6rem, 6vw, 4.5rem) clamp(1.5rem, 4vw, 3rem);
+  text-align: center;
 }
-.figures__item { padding: clamp(1.6rem, 3vw, 2.4rem) 1rem; text-align: center; border-right: 1px solid var(--line); }
-.figures__item:last-child { border-right: 0; }
-.figures dt { font-size: .78rem; letter-spacing: .12em; color: var(--ash); margin-bottom: .5rem; }
-.figures dd { font-family: var(--min); color: var(--kohaku); line-height: 1; }
-.figures__n { font-size: clamp(2rem, 4.4vw, 3.1rem); font-weight: 600; letter-spacing: .02em; font-variant-numeric: tabular-nums; }
-.figures__u { font-size: .92rem; margin-left: .18em; }
+.prep__ttl {
+  font-family: var(--min); font-size: clamp(1.1rem, 2.2vw, 1.4rem); font-weight: 600;
+  letter-spacing: .14em; margin-bottom: 1.1rem;
+}
+.prep__tx { font-size: .9rem; color: var(--sumi-soft); letter-spacing: .04em; margin-bottom: 2rem; }
+.prep__tx:last-child { margin-bottom: 0; }
 
 /* ══════════════════════════════════════════════════════════════════
    Craft
@@ -437,6 +439,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   color: var(--kohaku); letter-spacing: .04em; margin: .5rem 0 .3rem; font-variant-numeric: tabular-nums;
 }
 .tel__tm { font-size: .78rem; color: var(--ash); letter-spacing: .08em; }
+/* 電話番号が決まるまでの暫定表示。実番号を入れる際は .tel__no に戻してください。 */
+.tel__prep {
+  font-family: var(--min); font-size: clamp(1.3rem, 3vw, 1.7rem); font-weight: 600;
+  color: var(--ash); letter-spacing: .16em; margin: .6rem 0 .8rem;
+}
 .tel__nt { margin-top: 1.6rem; padding-top: 1.6rem; border-top: 1px solid var(--line); font-size: .86rem; color: var(--sumi-soft); text-align: left; letter-spacing: .03em; }
 
 .form { background: var(--white); padding: clamp(2rem, 3.6vw, 3rem); }
@@ -529,10 +536,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
   .lead { grid-template-columns: 1fr; gap: 1.8rem; }
   .lead__eyebrow { margin-bottom: 0; }
-  .figures { grid-template-columns: repeat(2, 1fr); border-left: 1px solid var(--line); }
-  .figures__item:nth-child(2n) { border-right: 0; }
-  .figures__item:nth-child(n+3) { border-top: 1px solid var(--line); }
-
   .crafts, .reasons { grid-template-columns: 1fr; }
   .contact { grid-template-columns: 1fr; }
   .ft__in { flex-direction: column; }
