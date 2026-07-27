@@ -32,7 +32,7 @@
     // 導入中のスクロールを止める。解除は時間経過でも必ず行う。
     root.style.overflow = "hidden";
     function unlock() { root.style.overflow = ""; }
-    setTimeout(unlock, 3400);
+    setTimeout(unlock, 4800);
 
     // 見飽きた人向けに、触れば飛ばせるようにする。
     op.addEventListener("click", skip);
