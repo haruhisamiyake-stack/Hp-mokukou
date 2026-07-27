@@ -1,0 +1,29 @@
+name: Deploy to Firebase Hosting
+
+# 本番反映: main への push
+# 手動実行: GitHub の Actions タブから "Run workflow"（スマホからでも実行できます）
+on:
+  push:
+    branches:
+      - main
+      - claude/koyano-koumuten-homepage-1yhv7q
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy to Firebase Hosting (live channel)
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          channelId: live
+          projectId: ${{ vars.FIREBASE_PROJECT_ID }}

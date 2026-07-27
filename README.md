@@ -47,6 +47,53 @@ python3 -m http.server 8000
 # → http://localhost:8000 を開く
 ```
 
+## Firebase Hosting へのデプロイ
+
+このリポジトリは Firebase Hosting 用の設定と、GitHub Actions による自動デプロイを同梱しています。
+PCがなくても、スマートフォンのブラウザだけで設定を完了できます。
+
+### 事前準備（初回のみ）
+
+1. **Firebase プロジェクトを作成**
+   [console.firebase.google.com](https://console.firebase.google.com) でプロジェクトを作成し、
+   **Hosting** を有効化します。
+
+2. **サービスアカウントの鍵を取得**
+   Firebase コンソール → ⚙️ **プロジェクトの設定** → **サービス アカウント** タブ →
+   **新しい秘密鍵を生成** をタップ。JSONファイルがダウンロードされます。
+
+3. **GitHub にシークレットを登録**
+   リポジトリの **Settings → Secrets and variables → Actions** で以下を登録します。
+
+   | 種別 | 名前 | 値 |
+   | --- | --- | --- |
+   | Secret | `FIREBASE_SERVICE_ACCOUNT` | 手順2のJSONファイルの中身**全文** |
+   | Variable | `FIREBASE_PROJECT_ID` | Firebase のプロジェクトID |
+
+4. **`.firebaserc` を更新**
+   `REPLACE_WITH_YOUR_FIREBASE_PROJECT_ID` を実際のプロジェクトIDに書き換えます。
+
+### デプロイ
+
+- `main` ブランチに push すると自動でデプロイされます。
+- 手動で実行したい場合は、GitHub の **Actions** タブ →
+  「Deploy to Firebase Hosting」→ **Run workflow**（スマホからでも実行できます）。
+
+公開URLは `https://<プロジェクトID>.web.app` です。
+
+### CLI から手動でデプロイする場合
+
+```bash
+npm install -g firebase-tools
+firebase login
+firebase deploy --only hosting
+```
+
+> **補足**: 静的サイトのみであれば GitHub Pages でも公開できます
+> （Settings → Pages → Source を `main` に設定するだけで、鍵の登録が不要）。
+> Firebase は、今後フォームの送信処理やお問い合わせ管理などを
+> 追加していく場合に適しています。
+
 ## 本番公開に向けたカスタマイズ
 
 以下はサンプル値・プレースホルダーです。公開前に実際の情報へ差し替えてください。
