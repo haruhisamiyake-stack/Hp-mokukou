@@ -10,5 +10,11 @@ Thumbs.db
 # Logs
 *.log
 
+# Firebase
+.firebase/
+firebase-debug.log
+firebase-debug.*.log
+.runtimeconfig.json
+
 # Dependencies (if a build step is added later)
 node_modules/
