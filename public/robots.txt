@@ -1,0 +1,22 @@
+# 株式会社木工舎 ホームページ
+#
+# ── 現在、検索結果に出さない設定にしています ──
+#
+# 実際の制御は次の2つで行っています。
+#   1. 各ページの <meta name="robots" content="noindex, nofollow">
+#      （src/layouts/Base.astro の noindex）
+#   2. Firebase Hosting の X-Robots-Tag ヘッダー
+#      （firebase.json）
+#
+# ⚠️ ここを Disallow: / にしてはいけません。
+#    クロールを止めると noindex を読んでもらえず、
+#    かえって検索結果に URL が残り続けます。
+#    「読みに来てもらったうえで、載せないでと伝える」のが正しい形です。
+#
+# ── 公開してよくなったら ──
+#   1. src/layouts/Base.astro の noindex を false にする
+#   2. firebase.json の X-Robots-Tag ヘッダーを削除する
+#   3. このファイルの説明書きを整理する
+
+User-agent: *
+Allow: /

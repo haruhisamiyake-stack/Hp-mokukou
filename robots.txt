@@ -1,0 +1,6 @@
+# この階層は移植前の旧サイトです（GitHub Pages で配信）。
+# 検索結果に出さないため、index.html に noindex を指定しています。
+# Disallow は書きません。クロールを止めると noindex を読んでもらえないためです。
+# 現行サイトは https://hp-mokou.web.app です。
+User-agent: *
+Allow: /

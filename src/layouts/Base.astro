@@ -8,6 +8,11 @@ const {
   description = '株式会社木工舎は岡山市北区の工務店です。新築・建替えからリフォーム・増改築、内装、屋根・外装、設備工事、外構まで、住まいのことを一社で承ります。',
   ogTitle = '株式会社木工舎 | 岡山市の工務店',
   ogDescription = '木を知り、暮らしをつくる。新築からリフォームまで、住まいのことを一社で承ります。',
+
+  /* 検索結果に出さない設定。公開準備が整うまで true にしておく。
+     電話番号・施工写真などが揃い、公開してよくなったら false に変更する。
+     ここ1か所で全ページに効く。 */
+  noindex = true,
 } = Astro.props;
 
 const canonical = Astro.site
@@ -23,6 +28,7 @@ const canonical = Astro.site
     <title>{title}</title>
     <meta name="description" content={description} />
     {canonical && <link rel="canonical" href={canonical} />}
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={ogTitle} />

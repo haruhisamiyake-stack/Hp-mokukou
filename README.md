@@ -175,6 +175,31 @@ Firebase コンソール → ⚙️ **プロジェクトの設定** → **サー
 
 ---
 
+## 🔒 検索結果に出さない設定にしています（公開準備中）
+
+電話番号や施工写真が揃うまで、Googleなどの検索結果に出ないようにしてあります。
+**URLを知っている人は普通に閲覧できます。** 検索でたどり着けないだけです。
+
+| 場所 | 設定 |
+| --- | --- |
+| 全ページの `<head>` | `<meta name="robots" content="noindex, nofollow">` |
+| Firebase のHTTPヘッダー | `X-Robots-Tag: noindex, nofollow` |
+| 旧サイト（GitHub Pages） | `index.html` に同じ `meta` 指定 |
+
+> ⚠️ **`robots.txt` に `Disallow: /` と書いてはいけません。**
+> クロールを止めると `noindex` を読んでもらえず、かえって検索結果に
+> URL が残り続けます。「読みに来てもらったうえで、載せないでと伝える」のが正しい形です。
+
+### 公開してよくなったら
+
+1. `src/layouts/Base.astro` の `noindex` を `false` にする
+2. `firebase.json` の `X-Robots-Tag` の項目を削除する
+3. 旧サイトを削除済みでなければ、`index.html` の `meta` も外す
+4. `public/robots.txt` の説明書きを整理する
+
+反映には数日〜数週間かかります。急ぐ場合は Google Search Console から
+サイトを登録し、削除をリクエストしてください。
+
 ## ⚠️ 旧サイトが残っています（片付け待ち）
 
 サイトの中身は **Astro（`src/`）へ移植済み**です。今後の編集は `src/` 側で行ってください。
