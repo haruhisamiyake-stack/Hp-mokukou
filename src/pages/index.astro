@@ -226,53 +226,17 @@ import Base from '../layouts/Base.astro';
       <header class="dhead">
         <p class="dhead__eyebrow">Contact</p>
         <h2 class="dhead__title">お問い合わせ</h2>
-        <p class="dhead__desc">ご相談・お見積りは無料です。お気軽にお問い合わせください。</p>
+        <p class="dhead__desc">ご相談・お見積りは無料です。お電話でお気軽にお問い合わせください。</p>
       </header>
 
       <div class="contact">
         <aside class="tel">
-          {/*
-            TODO: 電話番号が決まり次第、下記を実際の番号に差し替えてください。
-            差し替え箇所は tel__prep を tel__no に戻し、href="tel:..." を付ける2か所です。
-          */}
           <p class="tel__lb">お電話でのお問い合わせ</p>
-          <p class="tel__prep">準備中</p>
-          <p class="tel__tm">お急ぎの場合も、下記フォームよりご連絡ください。<br />折り返しご連絡いたします。</p>
+          <a class="tel__no" href="tel:08019404578">080-1940-4578</a>
+          <p class="tel__tm">お問い合わせはお電話のみで承っております。</p>
           <p class="tel__nt">現地調査・お見積りは無料で承っております。「こんなことできる？」といったご相談だけでも歓迎です。岡山市および近隣地域に伺います。</p>
         </aside>
 
-        <form class="form" id="form" novalidate>
-          <div class="fld">
-            <label for="f-name">お名前 <span class="need">必須</span></label>
-            <input id="f-name" name="name" type="text" required autocomplete="name" placeholder="山田 太郎" />
-          </div>
-          <div class="fld">
-            <label for="f-mail">メールアドレス <span class="need">必須</span></label>
-            <input id="f-mail" name="email" type="email" required autocomplete="email" placeholder="example@mail.com" />
-          </div>
-          <div class="fld">
-            <label for="f-tel">電話番号</label>
-            <input id="f-tel" name="tel" type="tel" autocomplete="tel" placeholder="000-0000-0000" />
-          </div>
-          <div class="fld">
-            <label for="f-type">ご相談内容</label>
-            <select id="f-type" name="type">
-              <option>新築・建替え</option>
-              <option>リフォーム・増改築</option>
-              <option>内装・大工工事</option>
-              <option>屋根・外装・防水</option>
-              <option>設備工事</option>
-              <option>外構・エクステリア</option>
-              <option>その他</option>
-            </select>
-          </div>
-          <div class="fld">
-            <label for="f-msg">お問い合わせ内容 <span class="need">必須</span></label>
-            <textarea id="f-msg" name="message" rows="5" required placeholder="ご要望やご質問をご記入ください。"></textarea>
-          </div>
-          <button type="submit" class="btn btn--amber btn--full">この内容で送信する</button>
-          <p class="form__note" id="formNote" role="status" aria-live="polite"></p>
-        </form>
       </div>
     </div>
   </section>

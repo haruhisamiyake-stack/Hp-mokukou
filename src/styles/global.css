@@ -263,6 +263,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .hd__contact:hover { background: var(--kohaku); }
 .hd__contact svg { width: 19px; height: 19px; flex: none; }
+.hd__contact span { font-variant-numeric: tabular-nums; letter-spacing: .04em; }
 
 .hd__burger { display: none; flex-direction: column; justify-content: center; gap: 7px; width: 48px; }
 .hd__burger span { display: block; width: 26px; height: 1px; background: currentColor; transition: transform .4s var(--ease), opacity .3s; }
@@ -572,37 +573,18 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* ══════════════════════════════════════════════════════════════════
    Contact
    ══════════════════════════════════════════════════════════════════ */
-.contact { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(2rem, 4vw, 3.6rem); align-items: start; }
+.contact { max-width: 34rem; margin-inline: auto; }
 .tel { background: var(--white); padding: clamp(2rem, 3.4vw, 2.8rem); text-align: center; }
 .tel__lb { font-size: .8rem; letter-spacing: .14em; color: var(--ash); }
 .tel__no {
   display: block; font-family: var(--min); font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 600;
   color: var(--kohaku); letter-spacing: .04em; margin: .5rem 0 .3rem; font-variant-numeric: tabular-nums;
+  text-decoration: none; transition: opacity .3s var(--ease);
 }
+.tel__no:hover { opacity: .75; }
 .tel__tm { font-size: .78rem; color: var(--ash); letter-spacing: .08em; }
-/* 電話番号が決まるまでの暫定表示。実番号を入れる際は .tel__no に戻してください。 */
-.tel__prep {
-  font-family: var(--min); font-size: clamp(1.3rem, 3vw, 1.7rem); font-weight: 600;
-  color: var(--ash); letter-spacing: .16em; margin: .6rem 0 .8rem;
-}
 .tel__nt { margin-top: 1.6rem; padding-top: 1.6rem; border-top: 1px solid var(--line); font-size: .86rem; color: var(--sumi-soft); text-align: left; letter-spacing: .03em; }
 
-.form { background: var(--white); padding: clamp(2rem, 3.6vw, 3rem); }
-.fld { margin-bottom: 1.5rem; }
-.fld label { display: block; font-family: var(--min); font-size: .9rem; font-weight: 600; letter-spacing: .1em; margin-bottom: .6rem; }
-.need { background: var(--kohaku); color: var(--white); font-family: var(--got); font-size: .64rem; font-weight: 400; letter-spacing: .1em; padding: .25em .8em; margin-left: .6em; vertical-align: 2px; }
-.fld input, .fld select, .fld textarea {
-  width: 100%; padding: .95rem 1.05rem;
-  font-family: var(--got); font-size: .95rem; color: var(--sumi);
-  background: var(--kinu); border: 1px solid var(--line); border-radius: 0;
-  transition: border-color .3s var(--ease), background .3s var(--ease);
-}
-.fld input::placeholder, .fld textarea::placeholder { color: #b4b0a8; }
-.fld input:focus, .fld select:focus, .fld textarea:focus { outline: none; border-color: var(--kohaku); background: var(--white); }
-.fld textarea { resize: vertical; line-height: 1.9; }
-.form__note { margin-top: 1.1rem; font-size: .88rem; letter-spacing: .04em; text-align: center; min-height: 1.4em; }
-.form__note.is-ok { color: #4a7a4e; }
-.form__note.is-ng { color: #a9432c; }
 
 /* ══════════════════════════════════════════════════════════════════
    Footer
@@ -678,7 +660,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .lead { grid-template-columns: 1fr; gap: 1.8rem; }
   .lead__eyebrow { margin-bottom: 0; }
   .crafts, .reasons { grid-template-columns: 1fr; }
-  .contact { grid-template-columns: 1fr; }
   .ft__in { flex-direction: column; }
 }
 

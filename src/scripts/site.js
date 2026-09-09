@@ -111,7 +111,7 @@
   });
 
   /* ── スクロールに応じた表示 ─────────────── */
-  var targets = $$(".lead, .figures__item, .craft, .reason, .work, .flow__i, .voice, .spec, .tel, .form");
+  var targets = $$(".lead, .figures__item, .craft, .reason, .work, .flow__i, .voice, .spec, .tel");
   targets.forEach(function (el, i) {
     el.setAttribute("data-rv", "");
     el.style.transitionDelay = (i % 3) * 0.1 + "s";
@@ -129,34 +129,6 @@
     targets.forEach(function (el) { io.observe(el); });
   } else {
     targets.forEach(function (el) { el.classList.add("is-in"); });
-  }
-
-  /* ── お問い合わせフォーム（フロント側の検証のみ） ──
-     ※ 実際の送信にはメール送信APIとの連携が必要です。            */
-  var form = $("#form");
-  var note = $("#formNote");
-
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      // form.name / form.method などは HTMLFormElement 自身のプロパティに
-      // 遮られるため、入力欄は ID で直接取得する。
-      var name = $("#f-name").value.trim();
-      var mail = $("#f-mail").value.trim();
-      var msg  = $("#f-msg").value.trim();
-      var mailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail);
-
-      if (!name || !mailOk || !msg) {
-        note.textContent = "必須項目（お名前・メールアドレス・お問い合わせ内容）をご確認ください。";
-        note.className = "form__note is-ng";
-        return;
-      }
-
-      note.textContent = "お問い合わせありがとうございます。担当者より折り返しご連絡いたします。";
-      note.className = "form__note is-ok";
-      form.reset();
-    });
   }
 
   /* ── 年号 ─────────────────────────────── */
