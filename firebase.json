@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "target": "mokukou",
     "public": "dist",
     "ignore": [
       "firebase.json",

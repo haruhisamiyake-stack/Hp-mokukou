@@ -22,9 +22,7 @@
 │   └── img/                   # 画像置き場（/img/… で参照）
 ├── astro.config.mjs           # Astro 設定
 ├── firebase.json              # Firebase Hosting 設定（公開ディレクトリ dist）
-├── .firebaserc                # Firebase プロジェクトID
-├── .github/workflows/
-│   └── deploy.yml             # デプロイ（手動実行・preview / live 選択）
+├── .firebaserc                # Firebase プロジェクトID・配信先サイト
 ├── package.json
 ├── CLAUDE.md                  # 設計方針と作業フロー
 └── README.md
@@ -116,17 +114,24 @@ git pull --rebase origin main
 git push origin HEAD
 ```
 
-### 4. デプロイ（GitHub Actions）
+### 4. デプロイ（自分のPCから手動）
 
-push しただけでは公開されません。手動で実行します。
+push しただけでは公開されません。手元で `firebase` コマンドを実行します。
 
-1. GitHub の **Actions** タブを開く
-2. 左から「**Deploy to Firebase Hosting**」を選ぶ
-3. 「**Run workflow**」→ デプロイ先を選んで実行
-   - **preview** … 確認用の一時URL（7日で失効）
-   - **live** … 本番
+```bash
+npm run build                                   # dist/ を作り直す
 
-初回は Secret / Variable の登録が必要です（後述）。
+# 確認用の一時URL（7日で失効）に出す
+firebase hosting:channel:deploy preview --only mokukou --expires 7d
+
+# 問題なければ本番へ
+firebase deploy --only hosting:mokukou
+```
+
+初回のみ `npm install -g firebase-tools` と `firebase login` が必要です。
+ログインは **haruchan0405@gmail.com**（HP-project の所有者）で行ってください。
+
+> 何が公開されるか事前に見たいときは `--dry-run` を付けて実行します。
 
 ---
 
@@ -148,30 +153,29 @@ npm run dev
 
 ## 公開の準備（初回のみ）
 
-### 1. Firebase プロジェクトを作る
+### 1. Firebase の配信先（設定済み）
 
-[Firebase コンソール](https://console.firebase.google.com) でプロジェクトを作成し、
-**Hosting** を有効化します。作成後、プロジェクトIDを控えてください。
+既存プロジェクト **HP-project**（`hp-project-1c251`）の中に、
+このサイト専用の Hosting サイト **`hp-mokukou`** を追加してあります。
+1つのプロジェクトで複数サイトを持つ、Firebase の「マルチサイト」構成です。
 
-### 2. `.firebaserc` を更新
+| ファイル | 役割 |
+| --- | --- |
+| `.firebaserc` | プロジェクト `hp-project-1c251` と、ターゲット `mokukou` → サイト `hp-mokukou` の対応 |
+| `firebase.json` | `hosting.target: "mokukou"` で、上のターゲットへ配信 |
 
-`REPLACE_WITH_YOUR_FIREBASE_PROJECT_ID` を実際のプロジェクトIDに書き換えます。
+プロジェクトIDもサイトIDもリポジトリに入っているため、書き換えは不要です。
 
-### 3. サービスアカウントの鍵を取得
+### 2. Firebase CLI を用意する
 
-Firebase コンソール → ⚙️ **プロジェクトの設定** → **サービス アカウント** →
-**新しい秘密鍵を生成**。JSONファイルがダウンロードされます。
+```bash
+npm install -g firebase-tools
+firebase login          # haruchan0405@gmail.com でログイン
+firebase projects:list  # hp-project-1c251 が見えれば準備完了
+```
 
-### 4. GitHub に登録
-
-リポジトリの **Settings → Secrets and variables → Actions** で登録します。
-
-| 種別 | 名前 | 値 |
-| --- | --- | --- |
-| Secret | `FIREBASE_SERVICE_ACCOUNT` | 手順3のJSONファイルの**中身全文** |
-| Variable | `FIREBASE_PROJECT_ID` | Firebase のプロジェクトID |
-
-これで Actions からデプロイできるようになります。
+デプロイはこのログインの権限で行います。
+GitHub 側にサービスアカウントの鍵を置く必要はありません。
 
 ---
 
@@ -209,11 +213,11 @@ Firebase コンソール → ⚙️ **プロジェクトの設定** → **サー
 
 `https://haruhisamiyake-stack.github.io/Hp-mokukou/`
 
-**Firebase 本番への公開は完了しています。**
+**配信先は HP-project 配下の Hosting サイト `hp-mokukou` です。**
 
 | URL | 中身 | 配信元 |
 | --- | --- | --- |
-| **https://hp-mokou.web.app** | 新（Astro） | Firebase ✅ |
+| **https://hp-mokukou.web.app** | 新（Astro） | Firebase（HP-project 内のサイト `hp-mokukou`） |
 | https://haruhisamiyake-stack.github.io/Hp-mokukou/ | 旧（移植前） | GitHub Pages |
 
 ### 残っている片付け

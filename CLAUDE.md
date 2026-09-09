@@ -21,8 +21,8 @@
 - コミット後は、何をどのコミットでpushしたかを日本語で短く報告する
 - ⚠️ 破壊的操作（reset --hard / force push）は避け、取り消しは git revert を使う
   （複数PCでpullするため履歴を壊さない）
-- deploy はユーザーの指示があったときのみ、GitHub Actions のワークフローで実行する
-  （preview＝確認用の一時URL／live＝本番）
+- deploy はユーザーの指示があったときのみ、手元の `firebase` コマンドで実行する
+  （preview チャンネル＝確認用の一時URL／`firebase deploy`＝本番）
 
 ---
 
@@ -49,12 +49,19 @@ Astro のビルド対象外ですが、**現在この旧サイトが GitHub Page
 
 ### デプロイ
 
-`.github/workflows/deploy.yml` の手動実行のみです。push では動きません。
-実行には次の2つの登録が必要です（未登録だと失敗します）。
+**自分のPCから手動で行います。** GitHub からの自動デプロイは廃止しました。
+push しても公開はされません。
 
-| 種別 | 名前 | 値 |
-| --- | --- | --- |
-| Secret | `FIREBASE_SERVICE_ACCOUNT` | サービスアカウントJSONの全文 |
-| Variable | `FIREBASE_PROJECT_ID` | Firebase のプロジェクトID |
+配信先は、既存プロジェクト **HP-project**（`hp-project-1c251`）の中に追加した
+Hosting サイト **`hp-mokukou`** です（マルチサイト構成）。
+`.firebaserc` がターゲット `mokukou` をこのサイトに紐づけ、
+`firebase.json` の `hosting.target` がそれを指しています。
 
-`.firebaserc` のプロジェクトIDも未設定のままです。
+```bash
+npm run build
+firebase hosting:channel:deploy preview --only mokukou --expires 7d  # 確認用
+firebase deploy --only hosting:mokukou                               # 本番
+```
+
+`firebase login` は **haruchan0405@gmail.com** で行うこと。
+別アカウントだと HP-project が見えず失敗する。

@@ -1,5 +1,14 @@
 {
   "projects": {
-    "default": "hp-mokou"
+    "default": "hp-project-1c251"
+  },
+  "targets": {
+    "hp-project-1c251": {
+      "hosting": {
+        "mokukou": [
+          "hp-mokukou"
+        ]
+      }
+    }
   }
 }
